@@ -25,6 +25,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
+        'vendor_id',
+        'is_owner',
         'ml_id',
         'ml_user_name'
     ];

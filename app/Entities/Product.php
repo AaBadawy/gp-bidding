@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Models\User;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -59,9 +60,11 @@ class Product extends Model implements Transformable , HasMedia
      * @param $query
      * @return mixed
      */
-    public function scopeBasedOnAuth($query)
+    public function scopeBasedOnAuth($query,User | null $user = null)
     {
-        return auth()->user()->userable->productsBasedOnAuth();
+        if(is_null($user))
+            $user = auth()->user();
+        return $user->userable->productsBasedOnAuth();
     }
 
 

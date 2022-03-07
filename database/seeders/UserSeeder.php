@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Entities\Admin;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -14,11 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create()->user()->create([
-            'name' => 'Ahmed Badawy',
-            'email' => 'admin@antique.com',
-            'password' => 'password',
+        User::factory(100)->create();
+        User::first()->update([
+            'type'  => 'admin',
+            'email' => 'badawy@gp.com',
         ]);
-        $admin = Admin::first()->assignRole('admin');
     }
 }

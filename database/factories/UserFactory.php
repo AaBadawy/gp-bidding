@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Entities\Product;
+use App\Entities\Vendor;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -23,10 +24,15 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
+        $type = $this->faker->randomElement(['admin','vendor','client']);
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
+            'type'  => $type,
+            'is_owner'  => $type == 'vendor' ?: null,
+            'vendor_id' => Vendor::factory()->create(),
             'password' => 'password', // password $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
             'remember_token' => Str::random(10),
         ];
