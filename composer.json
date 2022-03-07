@@ -16,18 +16,10 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
         "prettus/l5-repository": "^2.7",
-        "joovlly/toaster": "dev-master",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^4.2",
         "yajra/laravel-datatables": "^1.5"
     },
-    "repositories": [
-        {
-            "name": "joovlly/toaster",
-            "type": "vcs",
-            "url": "https://github.com/Joovlly/toaster.git"
-        }
-    ],
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
