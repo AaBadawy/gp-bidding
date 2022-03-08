@@ -14,6 +14,6 @@ class BidObserver
             $bidding->amount_price = $auction->start_price + $auction->bidding_price;
         else
             $bidding->amount_price = Bidding::where('auction_id',request()->auction_id)->get()->last()->amount_price + $auction->bidding_price;
-        $bidding->client_id = auth()->user()->userable->id;
+        $bidding->client_id = auth()->user()->id;
     }
 }

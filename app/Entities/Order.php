@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Scopes\OrdersForUser;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -28,6 +29,11 @@ class Order extends Model implements Transformable
         'status', // pending, in progress, delivered
     ];
 
+    public static function booted()
+    {
+        static::addGlobalScope(new OrdersForUser(auth()->user()));
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
@@ -43,7 +49,7 @@ class Order extends Model implements Transformable
      */
     public function scopeBasedOnAuth($query)
     {
-        return auth()->user()->userable->ordersBasedOnAuth();
+        return auth()->user()->ordersBasedOnAuth();
     }
 
     public function scopeStatus($query,$status)

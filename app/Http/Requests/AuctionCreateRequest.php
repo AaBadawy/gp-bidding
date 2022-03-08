@@ -14,7 +14,7 @@ class AuctionCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('create-auction');
+        return $this->user()->can('create-auction');
     }
 
     /**

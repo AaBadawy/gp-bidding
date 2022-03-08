@@ -50,9 +50,7 @@ class OrdersController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 
-        $orders = $this->repository->scopeQuery(function (){
-            return Order::basedOnAuth();
-        })->all();
+        $orders = $this->repository->paginate();
 
         if (request()->wantsJson()) {
 

@@ -23,17 +23,17 @@
     <div class="row">
         <h3 class="col-12 p-3">You Orders Stats</h3>
         <x-countable-component
-            :count="\App\Entities\Order::basedOnAuth()->status('pending')->count()"
+            :count="\App\Entities\Order::status('pending')->count()"
             :title="'Pending Orders'"
             :color="'warning'"
         />
         <x-countable-component
-            :count="\App\Entities\Order::basedOnAuth()->status('in progress')->count()"
+            :count="\App\Entities\Order::status('in progress')->count()"
             :title="'In Progress Orders'"
             :color="'info'"
         />
         <x-countable-component
-            :count="\App\Entities\Order::basedOnAuth()->status('delivered')->count()"
+            :count="\App\Entities\Order::status('delivered')->count()"
             :title="'Delivered Orders'"
             :color="'success'"
         />
@@ -41,17 +41,17 @@
     <div class="row">
         <h3 class="col-12 p-3">You Auctions Stats</h3>
         <x-countable-component
-            :count="\App\Entities\Auction::basedOnAuth()->status('pending')->count()"
+            :count="\App\Entities\Auction::status('pending')->count()"
             :title="'Pending Auctions'"
             :color="'warning'"
         />
         <x-countable-component
-            :count="\App\Entities\Auction::basedOnAuth()->status('started')->count()"
+            :count="\App\Entities\Auction::status('started')->count()"
             :title="'Started Auctions'"
             :color="'info'"
         />
         <x-countable-component
-            :count="\App\Entities\Auction::basedOnAuth()->status('finished')->count()"
+            :count="\App\Entities\Auction::status('finished')->count()"
             :title="'Finished Auctions'"
             :color="'success'"
         />

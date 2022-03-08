@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (){
-    return redirect()->route('dashboard');
+    return view("errors.coming-soon-page");
 });
 
 //Auth::routes();

@@ -16,9 +16,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory(100)->create();
-        User::first()->update([
+        $user = User::first();
+        $user->update([
             'type'  => 'admin',
             'email' => 'badawy@gp.com',
         ]);
+        $user->assignRole('admin');
     }
 }

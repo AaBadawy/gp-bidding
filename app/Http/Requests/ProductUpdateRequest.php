@@ -13,7 +13,7 @@ class ProductUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('edit-product') ;
+        return $this->user()->can('edit-product') ;
     }
 
     /**

@@ -44,7 +44,7 @@ class AuctionsController extends Controller
      */
     public function index()
     {
-        if(request()->user()->userable->cannot('index-auction'))
+        if(auth()->user()->cannot('index-auction'))
             abort(403);
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 
@@ -61,7 +61,7 @@ class AuctionsController extends Controller
 
     public function dataTable(AuctionDataTable $dataTable)
     {
-        if(request()->user()->userable->cannot('index-auction'))
+        if(auth()->user()->cannot('index-auction'))
             abort(403);
         return $dataTable->render('auctions.index');
     }
@@ -111,7 +111,7 @@ class AuctionsController extends Controller
      */
     public function show($id)
     {
-        if(request()->user()->userable->cannot('show-auction'))
+        if(auth()->user()->cannot('show-auction'))
             abort(403);
 //        $auction = $this->repository->scopeQuery(function (){
 //            return Order::basedOnAuth();
@@ -130,7 +130,7 @@ class AuctionsController extends Controller
 
     public function auctionProducts($id)
     {
-        if(request()->user()->userable->cannot('show-auction'))
+        if(auth()->user()->cannot('show-auction'))
             abort(403);
         $products = $this->repository->with(['products'])->find($id)->products;
 
@@ -143,7 +143,7 @@ class AuctionsController extends Controller
 
     public function create(VendorRepository $vendorRepository)
     {
-        if(request()->user()->userable->cannot('create-auction'))
+        if(auth()->user()->cannot('create-auction'))
             abort(403);
         $vendors = $vendorRepository->all();
         return view('auctions.create',compact('vendors'));
@@ -157,7 +157,7 @@ class AuctionsController extends Controller
      */
     public function edit($id)
     {
-        if(request()->user()->userable->cannot('edit-auction'))
+        if(auth()->user()->cannot('edit-auction'))
             abort(403);
         $auction = $this->repository->find($id);
 
@@ -215,7 +215,7 @@ class AuctionsController extends Controller
      */
     public function destroy($id)
     {
-        if(request()->user()->userable->cannot('delete-auction'))
+        if(auth()->user()->cannot('delete-auction'))
             abort(403);
         $deleted = $this->repository->delete($id);
 

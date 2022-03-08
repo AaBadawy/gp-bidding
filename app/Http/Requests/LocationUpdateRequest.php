@@ -13,7 +13,7 @@ class LocationUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('edit-location');
+        return $this->user()->can('edit-location');
     }
 
     /**

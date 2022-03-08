@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function __invoke()
     {
         // todo implement logout function
-        return request()->user()->userable->logout();
+        if(! auth()->logout())
+            return redirect()->back()->withErrors(['un expected error']);
+
+        return redirect()->route('/');
     }
 }

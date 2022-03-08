@@ -36,7 +36,7 @@ class Auction extends Model implements Transformable
 
     public function scopeBasedOnAuth()
     {
-        return auth()->user()->userable->auctionsBasedOnAuth();
+        return auth()->user()->auctionsBasedOnAuth();
     }
 
     public function biddings()

@@ -14,7 +14,7 @@ class ProductCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('create-product');
+        return $this->user()->can('create-product');
     }
 
     /**

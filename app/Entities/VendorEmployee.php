@@ -73,7 +73,7 @@ class VendorEmployee extends Model implements Transformable,AuthorizableContract
      */
     public function scopeProductsBasedOnAuth(Builder $query):Builder
     {
-        return $query->from('products')->where('vendor_id',auth()->user()->userable->vendor->id);
+        return $query->from('products')->where('vendor_id',auth()->user()->vendor->id);
     }
 
 
@@ -83,7 +83,7 @@ class VendorEmployee extends Model implements Transformable,AuthorizableContract
      */
     public function scopeAuctionsBasedOnAuth(Builder $query):Builder
     {
-        return $query->setModel(new Auction())->where('vendor_id',\auth()->user()->userable->vendor->id);
+        return $query->setModel(new Auction())->where('vendor_id',\auth()->user()->vendor->id);
     }
 
     /**
@@ -93,7 +93,7 @@ class VendorEmployee extends Model implements Transformable,AuthorizableContract
     public function scopeOrdersBasedOnAuth(Builder $query): Builder
     {
         return $query->setModel(new Order())->whereHas('auction',function ($q){
-            return $q->where('vendor_id', '=' , \auth()->user()->userable->vendor->id);
+            return $q->where('vendor_id', '=' , \auth()->user()->vendor->id);
         });
     }
 }

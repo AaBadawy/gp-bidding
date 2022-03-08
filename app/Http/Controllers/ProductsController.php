@@ -42,7 +42,7 @@ class ProductsController extends Controller
 
     public function dataTable(ProductDataTable $dataTable)
     {
-        if(request()->user()->userable->cannot('index-product'))
+        if(auth()->user()->cannot('index-product'))
             abort(403);
         return $dataTable->render('products.index');
     }
@@ -53,7 +53,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        if(request()->user()->userable->cannot('index-product'))
+        if(auth()->user()->cannot('index-product'))
             abort(403);
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $products = $this->repository->all();
@@ -73,7 +73,7 @@ class ProductsController extends Controller
      */
     public function create(){
 
-        if(request()->user()->userable->cannot('create-product'))
+        if(auth()->user()->cannot('create-product'))
             abort(403);
         return view('products.create');
     }
@@ -127,7 +127,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        if(request()->user()->userable->cannot('show-product'))
+        if(auth()->user()->cannot('show-product'))
             abort(403);
         $product = $this->repository->find($id);
 
@@ -150,7 +150,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        if(request()->user()->userable->cannot('edit-product'))
+        if(auth()->user()->cannot('edit-product'))
             abort(403);
         $product = $this->repository->find($id);
 
@@ -210,7 +210,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        if(request()->user()->userable->cannot('delete-product'))
+        if(auth()->user()->cannot('delete-product'))
             abort(403);
         $deleted = $this->repository->delete($id);
 

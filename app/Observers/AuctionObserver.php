@@ -9,8 +9,8 @@ class AuctionObserver
 {
     public function creating(Auction $auction)
     {
-//        if(auth()->user()->userable::TYPE == 'vendor')
-//            $auction->vendor_id = auth()->user()->userable->vendor->id;
+//        if(auth()->user()::TYPE == 'vendor')
+//            $auction->vendor_id = auth()->user()->vendor->id;
     }
     /**
      * @param Auction $auction

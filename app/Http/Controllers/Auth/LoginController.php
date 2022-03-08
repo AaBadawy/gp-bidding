@@ -20,16 +20,9 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        if(Auth::attempt($credential))
-            return auth()->user()->userable->login($credential);
-        else{
-            if($request->wantsJson())
-                return response()->json([
-                    'message'=> __('messages.failed to login')
-                ]);
-            else
-                return redirect()->back()->withErrors(['credential' => 'Email Or Password Wrong']);
-        }
+        if(! Auth::attempt($credential))
+            redirect()->back()->withErrors(['credential' => 'invalid email or password']);
 
+        return redirect('/');
     }
 }

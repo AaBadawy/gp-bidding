@@ -41,7 +41,7 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        if(request()->user()->userable->cannot('show-location'))
+        if(auth()->user()->cannot('show-location'))
             abort(403);
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $locations = $this->repository->all();
@@ -62,7 +62,7 @@ class LocationsController extends Controller
      */
     public function dataTable(LocationDataTable $dataTable)
     {
-        if(request()->user()->userable->cannot('index-location'))
+        if(auth()->user()->cannot('index-location'))
             abort(403);
         return $dataTable->render('locations.index');
     }
@@ -72,10 +72,9 @@ class LocationsController extends Controller
      */
     public function create()
     {
-        if(request()->user()->userable->cannot('create-location'))
+        if(auth()->user()->cannot('create-location'))
             abort(403);
 
-        toastr()->info('You Created Location Successfully');
         return view('locations.create');
     }
     /**
@@ -103,8 +102,6 @@ class LocationsController extends Controller
 
                 return response()->json($response);
             }
-
-            toastr()->success('You Created Location Successfully');
             return redirect()->back();
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
@@ -127,7 +124,7 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        if(request()->user()->userable->cannot('show-location'))
+        if(auth()->user()->cannot('show-location'))
             abort(403);
         $location = $this->repository->find($id);
 
@@ -150,7 +147,7 @@ class LocationsController extends Controller
      */
     public function edit($id)
     {
-        if(request()->user()->userable->cannot('edit-location'))
+        if(auth()->user()->cannot('edit-location'))
             abort(403);
         $location = $this->repository->find($id);
 
@@ -209,7 +206,7 @@ class LocationsController extends Controller
      */
     public function destroy($id)
     {
-        if(request()->user()->userable->cannot('delete-location'))
+        if(auth()->user()->cannot('delete-location'))
             abort(403);
         $deleted = $this->repository->delete($id);
 

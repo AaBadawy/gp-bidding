@@ -13,7 +13,7 @@ class AuctionUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('edit-auction');
+        return $this->user()->can('edit-auction');
     }
 
     /**

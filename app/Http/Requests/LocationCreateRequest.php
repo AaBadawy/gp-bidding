@@ -13,7 +13,7 @@ class LocationCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->userable->can('create-location');
+        return $this->user()->can('create-location');
     }
 
     /**

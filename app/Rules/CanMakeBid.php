@@ -27,7 +27,7 @@ class CanMakeBid implements Rule
     public function passes($attribute, $value)
     {
         if($auction = Auction::has('biddings')->where('id',$value)->get()->first()){
-            if($auction->biddings->last()->client_id == auth()->user()->userable->id)
+            if($auction->biddings->last()->client_id == auth()->user()->id)
                 return false;
             return true;
         }

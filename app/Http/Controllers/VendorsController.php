@@ -38,7 +38,7 @@ class VendorsController extends Controller
 
     public function dataTable(VendorDataTable $dataTable)
     {
-        if(request()->user()->userable->cannot('index-vendor'))
+        if(request()->user()->cannot('index-vendor'))
             abort(403);
         return $dataTable->render('vendors.index');
     }
@@ -49,7 +49,7 @@ class VendorsController extends Controller
      */
     public function index()
     {
-        if(request()->user()->userable->cannot('index-vendor'))
+        if(request()->user()->cannot('index-vendor'))
             abort(403);
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $vendors = $this->repository->all();
@@ -66,7 +66,7 @@ class VendorsController extends Controller
 
     public function create()
     {
-        if(request()->user()->userable->cannot('create-vendor'))
+        if(auth()->user()->cannot('create-vendor'))
             abort(403);
         return view('vendors.create');
     }
@@ -118,7 +118,7 @@ class VendorsController extends Controller
      */
     public function show($id)
     {
-        if(request()->user()->userable->cannot('show-vendor'))
+        if(auth()->user()->cannot('show-vendor'))
             abort(403);
         $vendor = $this->repository->with(['employees'])->find($id);
         if (request()->wantsJson()) {
@@ -140,7 +140,7 @@ class VendorsController extends Controller
      */
     public function edit($id)
     {
-        if(request()->user()->userable->cannot('edit-vendor'))
+        if(auth()->user()->cannot('edit-vendor'))
             abort(403);
         $vendor = $this->repository->with(['owner'])->find($id);
         return view('vendors.edit', compact('vendor'));
@@ -196,7 +196,7 @@ class VendorsController extends Controller
      */
     public function destroy($id)
     {
-        if(request()->user()->userable->cannot('delete-vendor'))
+        if(auth()->user()->cannot('delete-vendor'))
             abort(403);
         $deleted = $this->repository->delete($id);
 

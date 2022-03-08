@@ -21,16 +21,17 @@ class OrdersForUser implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        $this->types[$this->user->type]($this->user);
-        // TODO: Implement apply() method.
+        $method = $this->types[$this->user->type];
+        return $this->$method($builder);
     }
 
     public function setUser(User |null $user)
     {
         //avoid not exists user
-        if(is_null($user) && ! app()->runningInConsole())
-            throw new \Exception("need to fill user instance");
-        $this->user = $user;
+        if(is_null($user))
+            $this->user = (new User(['type' => 'client']));
+        else
+            $this->user = $user;
     }
 
     public function forClient(Builder $query)

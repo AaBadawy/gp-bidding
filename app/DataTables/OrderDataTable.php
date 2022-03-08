@@ -37,7 +37,9 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $model)
     {
-        return $model->newQuery()->with(['client.user'])->basedOnAuth();
+        return $model->newQuery()
+            ->with(['client.user'])
+            ->select('orders.*');
     }
 
     /**
