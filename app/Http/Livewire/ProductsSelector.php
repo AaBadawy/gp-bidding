@@ -12,9 +12,9 @@ class ProductsSelector extends Component
 
     public function mount()
     {
-        if(auth()->user()::TYPE == 'admin')
+        if(auth()->user()->isAdmin())
             $this->products = collect();
-        if(auth()->user()::TYPE == 'vendor')
+        if(auth()->user()->isVendor())
             $this->products = Product::withoutAuction()->withVendor(auth()->user()->vendor->id)->get();
     }
 

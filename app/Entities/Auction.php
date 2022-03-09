@@ -22,7 +22,7 @@ class Auction extends Model implements Transformable
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $fillable = ['name','description','start_price','biding_type','bidding_price','start_at','end_at','vendor_id','status'];
 
     public function vendor()
     {
@@ -34,10 +34,6 @@ class Auction extends Model implements Transformable
         return app(AuctionFactory::class)->new();
     }
 
-    public function scopeBasedOnAuth()
-    {
-        return auth()->user()->auctionsBasedOnAuth();
-    }
 
     public function biddings()
     {

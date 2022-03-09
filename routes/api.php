@@ -31,11 +31,11 @@ Route::group(['middleware' => 'auth:api'],function(){
     Route::get('/auctions/{auction}/ratings/{rating}', 'AuctionRatingsController@show');
     Route::post('/ratings', 'AuctionRatingsController@store');
     Route::put('/ratings/{rating}', 'AuctionRatingsController@update');
-    Route::post('/bids', 'BiddingsController@store');
     Route::get('/orders', 'OrdersController@index');
     Route::get('/orders/{order}', 'OrdersController@show');
 });
 
+Route::post('/bids', 'BiddingsController@store');
 Route::post('auth/register' , 'Auth\RegisterController');
 Route::post('auth/login' , 'Auth\LoginController@login');
 Route::post('auth/logout' , 'Auth\LogoutController')->middleware('auth:api');

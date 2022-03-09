@@ -4,7 +4,7 @@
         @method('PUT')
     @endif
     <x-name-field :action="$action" name="{{$action === 'edit' ? $product->name : ''}}"/>
-    @if(auth()->user()::TYPE == 'admin')
+    @if(auth()->user()->isAdmin())
         <div class="form-group">
             <label for="">Vendor <x-required-star /></label>
             <select name="vendor_id" id="" class="form-control">

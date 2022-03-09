@@ -32,7 +32,7 @@ class AuctionDataTable extends DataTable
      */
     public function query(Auction $model)
     {
-        return $model->newQuery()->basedOnAuth()->select('auctions.*');
+        return $model->newQuery()->select('auctions.*');
     }
 
     /**

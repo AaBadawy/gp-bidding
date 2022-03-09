@@ -11,7 +11,7 @@ class VendorsSelector extends Component
 
     public function getVendorsProperty()
     {
-        if(auth()->user()::TYPE == 'vendor')
+        if(auth()->user()->isVendor())
             return collect();
         return Vendor::all();
     }

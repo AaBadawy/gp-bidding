@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens , HasFactory, Notifiable,HasRoles;
+    use HasApiTokens , HasFactory, Notifiable,HasRoles,UserType;
 
     /**
      * The attributes that are mass assignable.
@@ -52,8 +54,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userable()
+    public function scopeClientType(Builder $builder)
     {
-        return $this->morphTo();
+        return $builder->byType('client');
+    }
+
+    public function scopeAdminType(Builder $builder)
+    {
+        return $builder->byType('admin');
+    }
+
+    public function scopeVendorType(Builder $builder)
+    {
+        return $builder->byType('vendor');
+    }
+
+    public function scopeByType(Builder $builder,string $type)
+    {
+        return $builder->where('type',$type);
     }
 }

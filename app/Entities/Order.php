@@ -2,10 +2,13 @@
 
 namespace App\Entities;
 
+use App\Models\User;
 use App\Scopes\OrdersForUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use function PHPUnit\Framework\matches;
 
 /**
  * Class Order.
@@ -55,5 +58,33 @@ class Order extends Model implements Transformable
     public function scopeStatus($query,$status)
     {
         return $query->where('status', $status);
+    }
+
+    protected function scopeForUser(Builder $builder,User $user):Builder
+    {
+        switch ($user->type){
+            case 'admin':
+                return $this->forAdmin($user);
+            case 'vendor':
+                return $this->forVendor($user);
+            case 'client':
+                return $this->forCient($user);
+        }
+        throw new \Exception('not found user type');
+    }
+
+    public function scopeForAdmin(Builder $builder,User $ueer)
+    {
+        return $builder;
+    }
+
+    public function scopeForVendor(Builder $builder,User $user)
+    {
+        return $builder->where('vendor_id',$user->vendor_id);
+    }
+
+    public function scopeForClient(Builder $builder,User $user)
+    {
+        return $builder->where('client_id',$user->id);
     }
 }

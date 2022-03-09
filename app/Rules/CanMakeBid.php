@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Entities\Auction;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
 class CanMakeBid implements Rule
@@ -27,7 +28,7 @@ class CanMakeBid implements Rule
     public function passes($attribute, $value)
     {
         if($auction = Auction::has('biddings')->where('id',$value)->get()->first()){
-            if($auction->biddings->last()->client_id == auth()->user()->id)
+            if($auction->biddings->last()->client_id == User::clientType()->first()->id)
                 return false;
             return true;
         }

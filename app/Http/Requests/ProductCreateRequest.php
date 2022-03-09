@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\RequiredVendorId;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductCreateRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class ProductCreateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description'=> 'required|string',
-            'vendor_id' => [new RequiredVendorId(),'exists:vendors,id'],
+            'vendor_id' => [Rule::requiredIf(fn () => $this->user()?->isAdmin()),'exists:vendors,id'],
             'price' => 'required|numeric|min:1',
             'product-image' => 'required|image',
             'sold' => 'boolean'

@@ -37,13 +37,16 @@ class ProductsController extends Controller
      */
     public function __construct(ProductRepository $repository)
     {
-        $this->repository = $repository;
+        if(! \request()->route()->named('products.index')) {
+            $this->repository = $repository;
+        }
     }
 
     public function dataTable(ProductDataTable $dataTable)
     {
         if(auth()->user()->cannot('index-product'))
             abort(403);
+
         return $dataTable->render('products.index');
     }
     /**
@@ -90,8 +93,9 @@ class ProductsController extends Controller
     public function store(ProductCreateRequest $request)
     {
         try {
+            $product = $this->repository->create($request->validated());
 
-            $product = $this->repository->create($request->all());
+            return $product;
             if($request->has('product-image'))
                 $product->addMediaFromRequest('product-image')->toMediaCollection('product-collection');
 
@@ -113,7 +117,6 @@ class ProductsController extends Controller
                     'message' => $e->getMessageBag()
                 ]);
             }
-
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }

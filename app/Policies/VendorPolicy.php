@@ -19,7 +19,7 @@ class VendorPolicy
      */
     public function before(User $user, string $ability)
     {
-        if($user->userable::TYPE == 'admin')
+        if($user->userable->isAdmin())
             return true;
     }
     /**

@@ -25,7 +25,7 @@ class RequiredVendorId implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(auth()->user()::TYPE == 'admin')
+        if(auth()->user()->isAdmin())
             return ! empty($value);
         return true;
     }

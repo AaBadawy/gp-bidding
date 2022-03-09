@@ -70,7 +70,7 @@ class BiddingsController extends Controller
     {
         try {
 
-            $biddding = $this->repository->create($request->all());
+            $biddding = $this->repository->create($request->validated());
 
             $response = [
                 'message' => 'Biddding created.',

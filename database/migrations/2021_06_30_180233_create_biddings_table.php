@@ -17,7 +17,7 @@ class CreateBiddingsTable extends Migration
 	{
 		Schema::create('biddings', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('client_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('auction_id')->constrained('auctions')->cascadeOnDelete();
             $table->float('amount_price',8,2);
             $table->timestamps();

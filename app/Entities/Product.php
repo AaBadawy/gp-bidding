@@ -3,7 +3,9 @@
 namespace App\Entities;
 
 use App\Models\User;
+use App\Scopes\ProductsForUserScope;
 use Database\Factories\ProductFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -28,9 +30,10 @@ class Product extends Model implements Transformable , HasMedia
      * @var array
      */
     protected $table = 'products';
-    protected $fillable = ['name','vendor_id','auction_id','description','price','sold', 'ml_id', 'ml_title'];
-    public $timestamps = true ;
 
+    protected $fillable = ['name','vendor_id','auction_id','description','price','sold', 'ml_id', 'ml_title'];
+
+    public $timestamps = true ;
 
     public function vendor()
     {
@@ -71,5 +74,34 @@ class Product extends Model implements Transformable , HasMedia
     protected static function newFactory()
     {
         return app(ProductFactory::class)->new();
+    }
+
+
+    protected function scopeForUser(Builder $builder,User $user):Builder
+    {
+        switch ($user->type){
+            case 'admin':
+                return $this->forAdmin($user);
+            case 'vendor':
+                return $this->forVendor($user);
+            case 'client':
+                return $this->forCient($user);
+        }
+        throw new \Exception('not found user type');
+    }
+
+    public function scopeForAdmin(Builder $builder,User $ueer)
+    {
+        return $builder;
+    }
+
+    public function scopeForVendor(Builder $builder,User $user)
+    {
+        return $builder->where('vendor_id',$user->vendor_id);
+    }
+
+    public function scopeForClient(Builder $builder,User $user)
+    {
+        return $builder->has('auction');
     }
 }

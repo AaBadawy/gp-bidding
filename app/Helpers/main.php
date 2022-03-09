@@ -44,3 +44,15 @@ if(! function_exists('getInterestTitlesByMLUserId'))
        });
     }
 }
+
+if(! function_exists('asset_metronic')){
+    /**
+     * @param $path
+     * @param $secure
+     * @return string
+     */
+    function asset_metronic($path, $secure = null):string
+    {
+        return asset("{$path}");
+    }
+}

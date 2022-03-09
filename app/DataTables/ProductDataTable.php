@@ -32,7 +32,7 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model)
     {
-        return $model->newQuery()->basedOnAuth()->select('products.*');
+        return $model->newQuery()->forUser(auth()->user())->select('products.*');
     }
 
     /**
