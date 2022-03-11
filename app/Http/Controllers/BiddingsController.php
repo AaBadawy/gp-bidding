@@ -70,11 +70,11 @@ class BiddingsController extends Controller
     {
         try {
 
-            $biddding = $this->repository->create($request->validated());
+            $bidding = $this->repository->create($request->validated());
 
             $response = [
-                'message' => 'Biddding created.',
-                'data'    => $biddding->toArray(),
+                'message' => 'Bidding created.',
+                'data'    => $bidding->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -104,12 +104,12 @@ class BiddingsController extends Controller
      */
     public function show($id)
     {
-        $biddding = $this->repository->find($id);
+        $bidding = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $biddding,
+                'data' => $bidding,
             ]);
         }
 
@@ -125,9 +125,9 @@ class BiddingsController extends Controller
      */
     public function edit($id)
     {
-        $biddding = $this->repository->find($id);
+        $bidding = $this->repository->find($id);
 
-        return view('bidddings.edit', compact('biddding'));
+        return view('bidddings.edit', compact('bidding'));
     }
 
     /**
@@ -146,11 +146,11 @@ class BiddingsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $biddding = $this->repository->update($request->all(), $id);
+            $bidding = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Biddding updated.',
-                'data'    => $biddding->toArray(),
+                'message' => 'Bidding updated.',
+                'data'    => $bidding->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -188,7 +188,7 @@ class BiddingsController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Biddding deleted.',
+                'message' => 'Bidding deleted.',
                 'deleted' => $deleted,
             ]);
         }

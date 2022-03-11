@@ -22,11 +22,11 @@ class UserSeeder extends Seeder
             'type'  => 'admin',
             'email' => 'admin@gp.com',
         ]);
+        $user->assignRole('admin');
 
         User::factory()->create(['email' => 'vendor@gp.com','type' => 'vendor','vendor_id' => Vendor::factory()]);
 
         User::factory()->create(['email' => 'client@gp.com','type' => 'client']);
 
-        $user->assignRole('admin');
     }
 }
