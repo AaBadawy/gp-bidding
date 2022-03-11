@@ -77,7 +77,10 @@ class AuctionsController extends Controller
     public function store(AuctionCreateRequest $request)
     {
         try {
-            $auction = $this->repository->create($request->all());
+            $auction = $this->repository->create($request->validated());
+
+            if($request->validated()['product_ids'])
+                Product::query()->whereKey($request->validated()['product_ids'])->cursor()->each->update(['vendor_id' => $auction->id]);
 
             $response = [
                 'message' => 'Auction created.',

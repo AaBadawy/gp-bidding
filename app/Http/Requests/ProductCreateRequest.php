@@ -27,10 +27,10 @@ class ProductCreateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description'=> 'required|string',
+            'description'=> 'nullable|string',
             'vendor_id' => [Rule::requiredIf(fn () => $this->user()?->isAdmin()),'exists:vendors,id'],
             'price' => 'required|numeric|min:1',
-            'product-image' => 'required|image',
+            'main_image' => ['required','image'],
             'sold' => 'boolean'
         ];
     }

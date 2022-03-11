@@ -32,9 +32,9 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="product-image">Image <x-required-star /></label>
-        <input type="file" name="product-image" />
-        @error('product-image')
+        <label for="main_image">Image <x-required-star /></label>
+        <input type="file" name="main_image" />
+        @error('main_image')
         <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>

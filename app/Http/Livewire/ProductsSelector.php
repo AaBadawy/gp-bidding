@@ -14,8 +14,8 @@ class ProductsSelector extends Component
     {
         if(auth()->user()->isAdmin())
             $this->products = collect();
-        if(auth()->user()->isVendor())
-            $this->products = Product::withoutAuction()->withVendor(auth()->user()->vendor->id)->get();
+        else
+            $this->products = Product::withoutAuction()->forUser(auth()->user())->get();
     }
 
     public function render()

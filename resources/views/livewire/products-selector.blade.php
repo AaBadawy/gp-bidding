@@ -6,7 +6,6 @@
         @endforeach
     </select>
     @error('product_ids')
-
         <p class="text-danger font-weight-bold">{{$message}}</p>
     @enderror
 </div>

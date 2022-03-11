@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (){
+    return view("website.index");
     return view("errors.coming-soon-page");
 });
 

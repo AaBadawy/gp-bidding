@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::table('users',function (Blueprint $table){
             $table->enum('type',['admin','vendor','client'])->default('client');
-            $table->dropMorphs('userable');
             $table->foreignId('vendor_id')->nullable()->constrained('vendors')->nullOnDelete();
             $table->boolean('is_owner')->nullable()->default(null);
         });
@@ -31,7 +30,6 @@ return new class extends Migration
         Schema::table('users',function (Blueprint $table){
             $table->dropColumn(['type','is_owner']);
             $table->dropConstrainedForeignId('vendor_id');
-            $table->morphs('userable');
         });
     }
 };

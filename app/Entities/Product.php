@@ -49,9 +49,9 @@ class Product extends Model implements Transformable , HasMedia
      * @param $query
      * @return mixed
      */
-    public function scopeWithoutAuction($query)
+    public function scopeWithoutAuction(Builder $query)
     {
-        return $query->whereNull('auction_id');
+        return $query->doesntHave('auction');
     }
 
     public function scopeWithVendor($query,$vendor_id)

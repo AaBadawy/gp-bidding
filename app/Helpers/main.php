@@ -56,3 +56,18 @@ if(! function_exists('asset_metronic')){
         return asset("{$path}");
     }
 }
+
+
+if(! function_exists('asset_website')){
+    /**
+     * @param $path
+     * @param $secure
+     * @return string
+     */
+    function asset_website($path, $secure = null):string
+    {
+        return asset("website_assets/{$path}");
+    }
+}
+
+

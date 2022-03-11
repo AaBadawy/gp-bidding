@@ -95,9 +95,8 @@ class ProductsController extends Controller
         try {
             $product = $this->repository->create($request->validated());
 
-            return $product;
-            if($request->has('product-image'))
-                $product->addMediaFromRequest('product-image')->toMediaCollection('product-collection');
+            if($request->hasFile('main_image'))
+                $product->addMediaFromRequest('main_image')->toMediaCollection('main_image');
 
             $response = [
                 'message' => 'Product created.',
