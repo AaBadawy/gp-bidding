@@ -14,7 +14,7 @@ class LogoutController extends Controller
 
     public function __invoke()
     {
-        // todo implement logout function
+
         if(! auth()->logout())
             return redirect()->back()->withErrors(['un expected error']);
 

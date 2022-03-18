@@ -21,9 +21,9 @@ Route::middleware("guest")
     Route::get("/register","Auth\RegisterController@registerView")->name("register");
     Route::post("/register","Auth\RegisterController@register")->name("submit.register");
     Route::post('/login', 'Auth\LoginController@login')->name('submit.login');
-    Route::post('/logout', 'Auth\LogoutController')->name('logout');
 });
 
+Route::middleware("auth")->get("/logout",'Auth\LogoutController')->name('logout');
 /************************* Product Routes ************************/
 
 Route::get('index','ProductsController@index');

@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('order:create')->everyMinute();
+        $schedule->command("set-winners")->everyMinute();
         // $schedule->command('inspire')->hourly();
     }
 

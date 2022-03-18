@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Website;
 
 use App\Entities\Auction;
+use App\Http\Controllers\Controller;
 
-class AuctionDetailsController
+class AuctionDetailsController extends Controller
 {
 
 

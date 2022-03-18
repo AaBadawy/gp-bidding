@@ -29,7 +29,7 @@
                 <span class="total-bids">{{$biddingNumber}} Bids</span>
             </div>
             <div class="text-center">
-                <a href="#0" class="custom-button">Submit a bid</a>
+                <a href="{{route("website.auction.details",['auction' => $auction->id])}}" class="custom-button">See More</a>
             </div>
         </div>
     </div>
