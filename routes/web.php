@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (){
-    return view("website.index");
-    return view("errors.coming-soon-page");
-});
-
 //Auth::routes();
 
-Route::get('/login', 'Auth\LoginController@loginView')->name('login');
-Route::post('/login', 'Auth\LoginController@login')->name('submit.login');
-Route::post('/logout', 'Auth\LogoutController')->name('logout');
+Route::middleware("guest")
+->group(function (){
+    Route::get('/login', 'Auth\LoginController@loginView')->name('login');
+    Route::get("/register","Auth\RegisterController@registerView")->name("register");
+    Route::post("/register","Auth\RegisterController@register")->name("submit.register");
+    Route::post('/login', 'Auth\LoginController@login')->name('submit.login');
+    Route::post('/logout', 'Auth\LogoutController')->name('logout');
+});
 
 /************************* Product Routes ************************/
 

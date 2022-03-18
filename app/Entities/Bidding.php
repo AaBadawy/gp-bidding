@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Events\BidCreated;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -50,6 +51,6 @@ class Bidding extends Model implements Transformable
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(User::class,'client_id');
     }
 }

@@ -37,7 +37,7 @@ class ProductsController extends Controller
      */
     public function __construct(ProductRepository $repository)
     {
-        if(! \request()->route()->named('products.index')) {
+        if(! \request()->route()?->named('products.index')) {
             $this->repository = $repository;
         }
     }

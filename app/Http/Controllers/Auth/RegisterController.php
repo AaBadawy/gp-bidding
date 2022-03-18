@@ -11,22 +11,30 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
+
+    public function registerView()
+    {
+        return view("auth.register");
+    }
+
     /**
      * register new client
      * This method always expect the coming request is JSON.
      * @param RegisterRequest $request
      */
-    public function __invoke(RegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
         $request->merge([
-            'password' => $request->password
+            'password' => $request->password,
+            'type'      => "client",
         ]);
 
-        $client = Client::create();
-        $user = $client->user()->create($request->only(['name' , 'email' , 'password']));
 
-        $client->assignRole('client');
+        $user = User::create($request->only(['name' , 'email' , 'password']));
+
         Auth::login($user);
-        return $user->userable->login();
+
+        return view("website.main");
+
     }
 }

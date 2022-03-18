@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{asset_website("css/bootstrap.min.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/all.min.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/animate.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/nice-select.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/owl.min.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/magnific-popup.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/flaticon.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/jquery-ui.min.css")}}">
+<link rel="stylesheet" href="{{asset_website("css/main.css")}}">

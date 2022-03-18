@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function loginView()
     {
-        return view('vendor.adminlte.auth.login');
+        return view('auth.login');
     }
 
     public function login(LoginRequest $request)

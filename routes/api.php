@@ -36,6 +36,5 @@ Route::group(['middleware' => 'auth:api'],function(){
 });
 
 Route::post('/bids', 'BiddingsController@store');
-Route::post('auth/register' , 'Auth\RegisterController');
 Route::post('auth/login' , 'Auth\LoginController@login');
 Route::post('auth/logout' , 'Auth\LogoutController')->middleware('auth:api');

@@ -30,7 +30,7 @@
             <div class="header-wrapper">
                 <div class="logo">
                     <a href="./index.html">
-                        <img src={{asset_website("images/logo/logo.png")}} alt="logo">
+                        <img src="{{asset_website("images/logo/logo.png")}}" alt="logo">
                     </a>
                 </div>
                 <ul class="menu ml-auto">
