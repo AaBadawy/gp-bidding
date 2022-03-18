@@ -18,7 +18,7 @@
                     </div>
                     <div class="amount-content">
                         <div class="current">Current Bid</div>
-                        <div class="amount">Egp {{$currentPrice}}</div>
+                        <div class="amount">Egp {{$auction->current_price ?: $auction->start_price}}</div>
                     </div>
                 </div>
             </div>

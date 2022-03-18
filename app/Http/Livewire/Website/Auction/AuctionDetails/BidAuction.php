@@ -15,7 +15,15 @@ class BidAuction extends Component
 
     public  $bidAmount = 0;
 
-    protected $listeners = ["bidCreated" => 'lastBid'];
+
+    protected function getListeners()
+    {
+        return
+            [
+                "bidCreated" => 'lastBid',
+                "echo:auctions.{$this->auction->id},BidCreated" => '$refresh',
+            ];
+    }
 
     protected function rules():array
     {
@@ -49,7 +57,7 @@ class BidAuction extends Component
         $this->validate();
 
         $this->auction->biddings()->create([
-            "client_id"     => User::query()->latest()->where('type','client')->inRandomOrder()->first()->id,//auth()->id
+            "client_id"     => auth()->id(),
             "amount_price"  => $this->bidAmount,
         ]);
 

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Entities\Bidding;
 use App\Entities\Vendor;
+use App\Policies\BidingPolicy;
 use App\Policies\VendorPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-         Vendor::class => VendorPolicy::class,
+            Vendor::class => VendorPolicy::class,
+            Bidding::class => BidingPolicy::class
     ];
 
     /**
