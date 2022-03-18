@@ -109,8 +109,10 @@
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^7.0.3",
+        "laravel-echo": "^1.11.3",
         "laravel-mix": "^5.0.9",
         "lodash": "^4.17.20",
+        "pusher-js": "^4.4.0",
         "replace-in-file-webpack-plugin": "^1.0.6",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.6",

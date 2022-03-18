@@ -5,7 +5,7 @@ Template URI: http://pixner.net/sbidu/
 Author: uiaxis
 Author URI: https://themeforest.net/user/uiaxis
 Version: 1.0.0
-Text Domain: 
+Text Domain:
 */
 /*
 ///// CSS Index \\
@@ -3581,7 +3581,7 @@ div[class*="auction"] .custom-button {
     align-items: center;
     border-bottom: 2px dotted #deddf5;
     border-top: 2px dotted #deddf5;
-    width: 50%;
+    width: 100%;
     justify-content: center;
     position: relative;
 }

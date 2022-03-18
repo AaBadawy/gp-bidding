@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="{{asset_website("css/jquery-ui.min.css")}}">
     <link rel="stylesheet" href="{{asset_website("css/main.css")}}">
 
+    @livewireStyles
     <link rel="shortcut icon" href="{{asset_website("images/favicon.png")}}" type="image/x-icon">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 
 <body>
@@ -188,8 +190,8 @@
             <p>Bid and win great deals,Our auction process is simple, efficient, and transparent.</p>
         </div>
         <div class="row justify-content-center mb-30-none">
-            @foreach(range(1,4) as $index)
-                <livewire:website.auction.auction-item />
+            @foreach(\App\Entities\Auction::withcount('biddings')->has('products')->get() as $auction)
+                <livewire:website.auction.auction-item :auction="$auction" />
             @endforeach
         </div>
         <div class="load-wrapper">
@@ -1141,6 +1143,14 @@
 <script src={{asset_website("js/yscountdown.min.js")}}></script>
 <script src={{asset_website("js/jquery-ui.min.js")}}></script>
 <script src={{asset_website("js/main.js")}}></script>
+<script src="{{asset("js/app.js")}}"></script>
+@livewireScripts
+<script>
+    Echo.channel('auctions.102')
+        .listen('BidCreated', (e) => {
+            console.log("listend");
+        });
+</script>
 </body>
 
 </html>

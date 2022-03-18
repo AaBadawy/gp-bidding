@@ -73,9 +73,11 @@
     //Bidding All Events Here
     //New Countdown Starts
     if ($("#bid_counter1").length) {
-      // If you need specific date then comment out 1 and comment in 2
-      // let endDate = "2020/03/20"; //This is 1
-      let endDate = (new Date().getFullYear()) + '/' + (new Date().getMonth() + 1) + '/' + (new Date().getDate() + 1); //This is 2
+        let element = document.getElementById('bid_counter1');
+        let endDate = element.getAttribute('data-endDate');
+        // If you need specific date then comment out 1 and comment in 2
+      // let endDate = "2022/03/22 13:45"; //This is 1
+      // let endDate = (new Date().getFullYear()) + '/' + (new Date().getMonth() + 1) + '/' + (new Date().getDate() + 1); //This is 2
       let counterElement = document.querySelector("#bid_counter1");
       let myCountDown = new ysCountDown(endDate, function (remaining, finished) {
           let message = "";
@@ -847,12 +849,12 @@
     }
     // Nice Select
     $('.select-bar').niceSelect();
-    // counter 
+    // counter
     $('.counter').countUp({
       'time': 2500,
       'delay': 10
     });
-    // PoPuP 
+    // PoPuP
     $('.popup').magnificPopup({
       disableOn: 700,
       type: 'iframe',
@@ -914,7 +916,7 @@
         element.siblings('li').find('ul').slideUp(300, "swing");
       }
     })
-    // Scroll To Top 
+    // Scroll To Top
     var scrollTop = $(".scrollToTop");
     $(window).on('scroll', function () {
       if ($(this).scrollTop() < 500) {
@@ -949,7 +951,7 @@
     })
     $('.search-bar').on('click', function() {
       $('.search-form').toggleClass('active');
-    })    
+    })
     $('.remove-cart').on('click', function (e) {
       e.preventDefault();
       $(this).parent().parent().hide(300);
@@ -1246,7 +1248,7 @@
         var number = el.item.index;
         $owl_slider = sync1.data('owl.carousel');
         $owl_slider.to(number, 500, true);
-      });  
+      });
     sync1.owlCarousel();
     // Go to the next item
     $('.det-next').on('click', function() {

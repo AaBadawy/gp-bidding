@@ -80,7 +80,7 @@ class AuctionsController extends Controller
             $auction = $this->repository->create($request->validated());
 
             if($request->validated()['product_ids'])
-                Product::query()->whereKey($request->validated()['product_ids'])->cursor()->each->update(['vendor_id' => $auction->id]);
+                Product::query()->whereKey($request->validated()['product_ids'])->cursor()->each->update(['auction_id' => $auction->id]);
 
             $response = [
                 'message' => 'Auction created.',

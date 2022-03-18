@@ -24,6 +24,7 @@ class Auction extends Model implements Transformable
      */
     protected $fillable = ['name','description','start_price','biding_type','bidding_price','start_at','end_at','vendor_id','status'];
 
+    protected $dates = ['end_at','start_at'];
     public function vendor()
     {
         return $this->belongsTo(Vendor::class,'vendor_id');
@@ -38,6 +39,11 @@ class Auction extends Model implements Transformable
     public function biddings()
     {
         return $this->hasMany(Bidding::class);
+    }
+
+    public function lastBidding()
+    {
+        return $this->hasOne(Bidding::class)->latestOfMany();
     }
 
     public function order()
