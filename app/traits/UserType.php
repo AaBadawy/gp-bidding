@@ -28,6 +28,7 @@ trait UserType
     {
         return $this->typeIs(self::$VENDOR);
     }
+
     public function isAdmin()
     {
         return $this->typeIs(self::$ADMIN);
