@@ -1,4 +1,4 @@
-@extends("website.layout._profile-layout",["pageName" => "My Profile"])
+@extends("website.layout._profile-layout",["pageName" => "My Profile" ,"activating" => "profile"])
 @section("profile-content")
 
     <div class="col-lg-8">

@@ -81,7 +81,7 @@
             <p>Bid and win great deals,Our auction process is simple, efficient, and transparent.</p>
         </div>
         <div class="row justify-content-center mb-30-none">
-            @foreach(\App\Entities\Auction::withcount('biddings')->has('products')->get() as $auction)
+            @foreach(\App\Entities\Auction::popular()->get() as $auction)
                 <livewire:website.auction.auction-item :auction="$auction" />
             @endforeach
         </div>

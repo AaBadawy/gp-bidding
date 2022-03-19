@@ -17,6 +17,14 @@ class ProductFactory extends Factory
      */
     protected $model = Product::class;
 
+    public function configure()
+    {
+        $imageUrl = $this->faker->imageUrl(640,480, null, false);
+
+        return $this->afterCreating(function (Product $product) use($imageUrl){
+            $product->addMediaFromUrl($imageUrl)->toMediaCollection('main_image');
+        });
+    }
 
     /**
      * Define the model's default state.

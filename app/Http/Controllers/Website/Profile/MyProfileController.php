@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\Website\Profile;
 
 use App\Http\Controllers\Controller;
+use function view;
 
 class MyProfileController extends Controller
 {

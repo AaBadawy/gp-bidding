@@ -1,8 +1,8 @@
-<div class="col-sm-10 col-md-6 col-lg-4">
+<div @class(["col-sm-10 col-md-6","col-lg-4" => isset($lgClass)])>
     <div class="auction-item-2">
         <div class="auction-thumb">
             <a href="./product-details.html">
-                <img src="{{$auction->products()->first()->getFirstMediaUrl('main_image')}}" alt="jewelry">
+                <img src="{{$auction->products()->limit(1)->first()?->getFirstMediaUrl('main_image') ?: asset_website("images/auction/upcoming/upcoming-1.png")}}" alt="jewelry">
             </a>
             <a href="#0" class="rating"><i class="far fa-star"></i></a>
             <a href="#0" class="bid"><i class="flaticon-auction"></i></a>

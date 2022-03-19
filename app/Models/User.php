@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Entities\Auction;
+use App\Entities\Bidding;
 use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -72,5 +74,26 @@ class User extends Authenticatable
     public function scopeByType(Builder $builder,string $type)
     {
         return $builder->where('type',$type);
+    }
+
+    public function myBids()
+    {
+        return $this->hasMany(Bidding::class,"client_id");
+    }
+
+    public function involvedAuctions()
+    {
+        return $this->belongsToMany(Auction::class,'biddings',"client_id",'auction_id')
+            ->withPivot("amount_price");
+    }
+
+    public function involvedAuctionsDistinct()
+    {
+        return $this->belongsToMany(Auction::class,'biddings',"client_id",'auction_id')->distinct();
+    }
+
+    public function wonAuctions()
+    {
+        return $this->hasMany(Auction::class,"winner_id");
     }
 }

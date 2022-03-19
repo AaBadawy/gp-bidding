@@ -30,7 +30,7 @@
                 <div class="col-lg-8">
                     <div class="product-details-content">
                         <div class="product-details-header">
-                            <h2 class="title">The Breeze Zodiac IX</h2>
+                            <h2 class="title">{{$auction->name}}</h2>
                             <ul>
                                 <li>Auction ID #: {{$auction->id}}</li>
                                 <li>products' IDS #: {{$auction->products->implode("id","-")}}</li>

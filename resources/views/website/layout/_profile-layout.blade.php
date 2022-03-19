@@ -35,28 +35,28 @@
                             <input type="file" id="profile-pic" class="d-none">
                         </div>
                         <div class="content">
-                            <h5 class="title"><a href="#0">Percy Reed</a></h5>
-                            <span class="username">john@gmail.com</span>
+                            <h5 class="title"><a href="#0">{{auth()->user()->name}}</a></h5>
+                            <span class="username">{{auth()->user()->email}}</span>
                         </div>
                     </div>
                     <ul class="dashboard-menu">
                         <li>
-                            <a href="dashboard.html"><i class="flaticon-dashboard"></i>Dashboard</a>
+                            <a href="{{route("website.profile.my-dashboard")}}" @class(['active' => $activating == 'dashboard'])><i class="flaticon-dashboard"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="profile.html"><i class="flaticon-settings"></i>Personal Profile </a>
+                            <a href="{{route("website.profile.my-profile")}}" @class(['active' => $activating == 'profile'])><i class="flaticon-settings"></i>Personal Profile </a>
                         </li>
                         <li>
-                            <a href="#0" class="active"><i class="flaticon-auction"></i>My Bids</a>
+                            <a href="{{route("website.profile.my-involved-auctions")}}" @class([ 'active' => $activating == 'involved-auctions'])><i class="flaticon-auction"></i>Involved Auctions</a>
                         </li>
                         <li>
-                            <a href="winning-bids.html"><i class="flaticon-best-seller"></i>Winning Bids</a>
+                            <a href="winning-bids.html @class([ 'active' => $activating == 'winning-bids'])"><i class="flaticon-best-seller"></i>Winning Bids</a>
                         </li>
                         <li>
-                            <a href="notifications.html"><i class="flaticon-alarm"></i>My Alerts</a>
+                            <a href="notifications.html" @class(['active' => $activating == 'notification'])><i class="flaticon-alarm"></i>My Alerts</a>
                         </li>
                         <li>
-                            <a href="my-favorites.html"><i class="flaticon-star"></i>My Favorites</a>
+                            <a href="my-favorites.html" @class(['active' => $activating == 'watching'])><i class="flaticon-star"></i>Watching Bids</a>
                         </li>
                         <li>
                             <a href="{{route("logout")}}"><i class="flaticon-logout"></i>Logout</a>

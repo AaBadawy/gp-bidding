@@ -25,8 +25,8 @@ class AuctionFactory extends Factory
         return [
             'name'=> $this->faker->name,
             'description' => $this->faker->text,
-            'start_price' => $this->faker->randomNumber(4),
-            'bidding_price' => $this->faker->randomNumber(4),
+            'start_price' => $this->faker->randomNumber(3),
+            'bidding_price' => $this->faker->randomNumber(3),
             'start_at' => $this->faker->dateTime,
             'end_at' => $this->faker->dateTime,
             'vendor_id' => $this->faker->randomElement($this->vendorIds()),
@@ -41,5 +41,15 @@ class AuctionFactory extends Factory
     public function auctionsIds()
     {
         return Auction::pluck('id');
+    }
+
+    public function running()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'end_at'        => today()->addDays(4)->format("Y-m-d H:i"),
+                "start_at"      => today()->format("Y-m-d H:i"),
+            ];
+        });
     }
 }

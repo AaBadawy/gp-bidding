@@ -19,7 +19,7 @@
                         <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
                     </li>
                     <li>
-                        <a href="sign-in.html" class="user-button"><i class="flaticon-user"></i></a>
+                        <a href="{{route("website.profile.my-profile")}}" class="user-button"><i class="flaticon-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -29,7 +29,7 @@
         <div class="container">
             <div class="header-wrapper">
                 <div class="logo">
-                    <a href="./index.html">
+                    <a href="{{route("website.main")}}">
                         <img src="{{asset_website("images/logo/logo.png")}}" alt="logo">
                     </a>
                 </div>
