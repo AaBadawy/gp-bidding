@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\Website\Auction;
 
 use App\Entities\Auction;
 use App\Http\Controllers\Controller;
+use function view;
 
 class AuctionDetailsController extends Controller
 {

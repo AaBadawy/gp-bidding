@@ -38,9 +38,7 @@
                         </div>
                         <livewire:website.auction.auction-details.current-price :auction="$auction"/>
                         <livewire:website.auction.auction-details.bid-auction :auction="$auction"/>
-                        <div class="buy-now-area">
-                            <a href="#0" class="rating custom-button active border"><i class="fas fa-star"></i> Watch Auction</a>
-                        </div>
+                        <livewire:website.watching-toggle :auction="$auction"/>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -80,14 +78,14 @@
                             <div class="content">Bid History ({{$auction->biddings_count}})</div>
                         </a>
                     </li>
-                    <li>
-                        <a href="#questions" data-toggle="tab">
-                            <div class="thumb">
-                                <img src="{{asset_website("/images/product/tab4.png")}}" alt="product">
-                            </div>
-                            <div class="content">Questions </div>
-                        </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a href="#questions" data-toggle="tab">--}}
+{{--                            <div class="thumb">--}}
+{{--                                <img src="{{asset_website("/images/product/tab4.png")}}" alt="product">--}}
+{{--                            </div>--}}
+{{--                            <div class="content">Questions </div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>
@@ -103,59 +101,59 @@
                 <div class="tab-pane fade show" id="history" >
                     <livewire:website.auction.auction-details.biddings-table :auction="$auction"/>
                 </div>
-                <div class="tab-pane fade show" id="questions">
-                    <h5 class="faq-head-title">Frequently Asked Questions</h5>
-                    <div class="faq-wrapper">
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How to start bidding?</span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">Security Deposit / Bidding Power </span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">Delivery time to the destination port </span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How to register to bid in an auction?</span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item open active">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How will I know if my bid was successful?</span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">What happens if I bid on the wrong lot?</span><span class="right-icon"></span>
-                            </div>
-                            <div class="faq-content">
-                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="tab-pane fade show" id="questions">--}}
+{{--                    <h5 class="faq-head-title">Frequently Asked Questions</h5>--}}
+{{--                    <div class="faq-wrapper">--}}
+{{--                        <div class="faq-item">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How to start bidding?</span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="faq-item">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">Security Deposit / Bidding Power </span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="faq-item">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">Delivery time to the destination port </span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="faq-item">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How to register to bid in an auction?</span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="faq-item open active">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">How will I know if my bid was successful?</span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="faq-item">--}}
+{{--                            <div class="faq-title">--}}
+{{--                                <img src="{{asset_website("/css/img/faq.png")}}" alt="css"><span class="title">What happens if I bid on the wrong lot?</span><span class="right-icon"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="faq-content">--}}
+{{--                                <p>All successful bidders can confirm their winning bid by checking the “Sbidu”. In addition, all successful bidders will receive an email notifying them of their winning bid after the auction closes.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
         </div>

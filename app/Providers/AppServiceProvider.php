@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Entities\Category;
 use App\Entities\Location;
 use App\Entities\Product;
 use App\Models\User;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             'product'   => Product::class,
             'location'  => Location::class,
             'user'      => User::class,
+            'category'  => Category::class,
         ]);
     }
 }

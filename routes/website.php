@@ -6,7 +6,8 @@ Route::get('/', function (){
     return view("website.index");
 })->name("main");
 
-Route::prefix("auctions")->group(function (){
+Route::prefix("auctions")->namespace("Auction")->group(function (){
+    Route::get("auctions","AllAuctionsController")->name("auction.index");
     Route::get("{auction}","AuctionDetailsController")->name("auction.details");
 });
 

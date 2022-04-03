@@ -70,4 +70,11 @@ if(! function_exists('asset_website')){
     }
 }
 
+if(! function_exists("watching")){
+    function watching(?\App\Helpers\WatchStrategy $strategy = null){
+        return (new \App\Helpers\Watch($strategy))
+            ->strategy();
+    }
+}
+
 
