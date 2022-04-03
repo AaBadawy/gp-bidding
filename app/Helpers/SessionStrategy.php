@@ -15,7 +15,10 @@ class SessionStrategy implements WatchStrategy
 
     public function __construct()
     {
-        $this->collection = collect();
+        if(session()->exists("watching-list"))
+            $this->collection = session("watching-list");
+        else
+            $this->collection = collect();
     }
 
     public function toggle(Auction $auction): Auction
@@ -48,14 +51,17 @@ class SessionStrategy implements WatchStrategy
 
     public function exists(Auction $auction): bool
     {
-        return (bool) $this->connect()->filter(fn() => $auction->id)->count();
+        return (bool) $this->connect()->filter(fn($value) => $value == $auction->id)->count();
     }
 
-    public function all(): Collection
+    public function all(int $limit = null): Collection
     {
-        return Auction::query()
-            ->whereKey($this->connect()->toArray())
-            ->get();
+        $query =  Auction::query()
+            ->whereKey($this->connect()->toArray());
+
+        $query = $limit ? $query->limit($limit) : $query;
+
+        return $query->get();
     }
 
     public function find(Auction $auction): Auction
@@ -78,7 +84,7 @@ class SessionStrategy implements WatchStrategy
         foreach ($this->collection as $item) {
             throw_unless(is_int($item),new \Exception("item should be integer"));
         }
-        session()
-        ->replace(["watching-list" => $this->collection]);
+
+        session()->replace(["watching-list" => $this->collection]);
     }
 }

@@ -15,7 +15,7 @@ interface WatchStrategy
 
     public function exists(Auction $auction):bool;
 
-    public function all():Collection;
+    public function all(int $limit = null):Collection;
 
     public function find(Auction $auction):Auction;
 

@@ -15,9 +15,7 @@
                     </li>
                 </ul>
                 <ul class="cart-button-area">
-                    <li>
-                        <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                    </li>
+                    <livewire:website.watching.counter />
                     <li>
                         <a href="{{route("website.profile.my-profile")}}" class="user-button"><i class="flaticon-user"></i></a>
                     </li>

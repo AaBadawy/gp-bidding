@@ -38,10 +38,13 @@ class DBStrategy implements WatchStrategy
         return $auction;
     }
 
-    public function all(): Collection
+    public function all(int $limit = null): Collection
     {
-        return $this->connection()
-            ->get();
+
+        $query = $this->connection();
+
+        $query = $limit ? $query->limit($limit) : $query;
+        return Auction::query()->whereKey($query->pluck("auction_id"))->get();
     }
 
     public function find(Auction $auction): Auction
