@@ -96,4 +96,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Auction::class,"winner_id");
     }
+
+    public function watchList()
+    {
+        return $this->belongsToMany(Auction::class,"watching","client_id","auction_id");
+    }
 }

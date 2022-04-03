@@ -56,7 +56,7 @@
                             <a href="notifications.html" @class(['active' => $activating == 'notification'])><i class="flaticon-alarm"></i>My Alerts</a>
                         </li>
                         <li>
-                            <a href="my-favorites.html" @class(['active' => $activating == 'watching'])><i class="flaticon-star"></i>Watching Bids</a>
+                            <a href="{{route("website.profile.my-watching-list")}}" @class(['active' => $activating == 'watching'])><i class="flaticon-star"></i>Watching Bids</a>
                         </li>
                         <li>
                             <a href="{{route("logout")}}"><i class="flaticon-logout"></i>Logout</a>

@@ -49,6 +49,15 @@ class SessionStrategy implements WatchStrategy
         return $auction;
     }
 
+    public function removeAll():bool
+    {
+        $this->collection = collect();
+
+        $this->save();
+
+        return ! $this->count();
+    }
+
     public function exists(Auction $auction): bool
     {
         return (bool) $this->connect()->filter(fn($value) => $value == $auction->id)->count();

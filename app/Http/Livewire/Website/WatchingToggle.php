@@ -35,5 +35,7 @@ class WatchingToggle extends Component
         $this->watching();
 
         $this->emitSelf("toggled");
+
+        $this->emitTo("website.watching.counter","toggled");
     }
 }

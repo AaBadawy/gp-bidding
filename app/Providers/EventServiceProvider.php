@@ -6,12 +6,14 @@ use App\Entities\Auction;
 use App\Entities\AuctionRating;
 use App\Entities\Bidding;
 use App\Entities\Product;
+use App\Listeners\SyncAllAuctionsFromSession;
 use App\Models\User;
 use App\Observers\AuctionObserver;
 use App\Observers\AuctionRatingObserver;
 use App\Observers\BidObserver;
 use App\Observers\ProductObserver;
 use App\Observers\UserObserver;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        Login::class => [
+            SyncAllAuctionsFromSession::class,
+        ]
     ];
 
     /**

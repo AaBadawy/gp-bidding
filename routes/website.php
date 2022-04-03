@@ -20,5 +20,6 @@ Route::middleware(["auth:web","authType:client"])
 Route::middleware("auth:web")->namespace("Profile")->name("profile.")->group(function (){
     Route::get("/me","MyProfileController")->name("my-profile");
     Route::get("/involved-auctions","MyInvolvedAuctionsController")->name("my-involved-auctions");
+    Route::get("/watching-list","MyFavouriteAuctionsAuctionsController")->name("my-watching-list");
     Route::get("/my-dashboard","MyDashboardController")->name("my-dashboard");
 });

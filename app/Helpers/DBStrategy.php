@@ -6,6 +6,7 @@ use App\Entities\Auction;
 use App\Models\User;
 use App\Models\Watching;
 use Illuminate\Support\Collection;
+use function Symfony\Component\Translation\t;
 
 class DBStrategy implements WatchStrategy
 {
@@ -36,6 +37,11 @@ class DBStrategy implements WatchStrategy
             $this->connection()->whereBelongsTo($auction)->first()->deleteOrFail();
 
         return $auction;
+    }
+
+    public function removeAll():bool
+    {
+        return $this->connection()->delete();
     }
 
     public function all(int $limit = null): Collection
@@ -72,6 +78,13 @@ class DBStrategy implements WatchStrategy
         return $this->connection()
             ->whereBelongsTo($auction)
             ->exists();
+    }
+
+    public function sync(array $auction_ids)
+    {
+        return $this->auth
+            ->watchList()
+            ->sync($auction_ids);
     }
 
     protected function creatingAttributes(int $auction_id):array

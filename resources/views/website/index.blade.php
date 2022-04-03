@@ -11,7 +11,6 @@
                     <p>
                         We’re constantly bringing new properties market so keep visiting our website that you don’t miss out on the next opportunity.
                     </p>
-                    <a href="#0" class="custom-button yellow btn-large">Get Started</a>
                 </div>
             </div>
             <div class="col-lg-6 col-xl-6 d-none d-lg-block">

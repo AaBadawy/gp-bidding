@@ -38,6 +38,8 @@ class FastWatch extends Component
 
         $this->emitTo("website.watching.counter","toggled");
 
+        $this->emit("auction-toggled");
+
         $this->emitTo("website.watching.all-auctions","toggled");
     }
 }

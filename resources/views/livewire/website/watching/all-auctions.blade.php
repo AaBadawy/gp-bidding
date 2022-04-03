@@ -9,7 +9,7 @@
         <div class="bottom-content">
             <div class="cart-products">
                 <h4 class="title">Watching List cart</h4>
-                @foreach($auctions as $auction)
+                @foreach(watching()->all(5) as $auction)
                     <livewire:website.watching.single-auction :auction="$auction"/>
                 @endforeach
                 <div class="btn-wrapper text-center">

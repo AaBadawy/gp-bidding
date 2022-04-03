@@ -13,6 +13,8 @@ interface WatchStrategy
 
     public function remove(Auction $auction):Auction;
 
+    public function removeAll():bool;
+
     public function exists(Auction $auction):bool;
 
     public function all(int $limit = null):Collection;
