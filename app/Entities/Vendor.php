@@ -25,7 +25,7 @@ class Vendor extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name','email', 'website', 'description'];
+    protected $fillable = ['name','email', 'website','status', 'description'];
 
     public function employees()
     {
@@ -42,6 +42,26 @@ class Vendor extends Model implements Transformable
         return $this->hasMany(Product::class,'vendor_id');
     }
 
+    public function auctions()
+    {
+        return $this->hasMany(Auction::class,'vendor_id');
+    }
+
+    public function runningAuctions()
+    {
+        return $this->auctions()->running();
+    }
+
+    public function pastAuctions()
+    {
+        return $this->auctions()->past();
+    }
+
+    public function upcomingAuctions()
+    {
+        return $this->auctions()->upcoming();
+    }
+
     public function scopeHasProducts(Builder $builder)
     {
         return $builder->has('products');
@@ -50,5 +70,10 @@ class Vendor extends Model implements Transformable
     protected static function newFactory()
     {
         return VendorFactory::new();
+    }
+
+    public function isActive()
+    {
+        return $this->status == 'active';
     }
 }

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Entities\Location;
+use App\View\Components\Datatable\ColumnType;
 use Carbon\Carbon;
 use Carbon\Traits\Creator;
 use Yajra\DataTables\Html\Button;
@@ -28,29 +29,21 @@ class LocationDataTable extends DataTable
                 return "<span>$created_at</span>";
             })
             ->editColumn('type', function ($model){
-                switch ($model->type)
-                {
-                    case 'country' :
-                        $color = 'primary';
-                        break;
-                    case 'city' :
-                        $color = 'danger';
-                        break;
-                    default :
-                        $color = 'secondary';
-                        break;
-                }
-                return "<span class='badge badge-$color'>$model->type</span>";
+                $columns = [
+                    'country' => 'primary',
+                    'city' => 'danger',
+                    'region' =>'secondary'];
+                return (new ColumnType($columns,$model->type))->render();
             })
             ->editColumn('parent.name', function($model){
                 $parent = $model->parent  ? $model->parent->name : '';
                 return "<span>$parent</span>";
             })
             ->addColumn('actions', function ($model) {
-                $btn = "<a href=" . route('locations.show', ['location' => $model->id]) . " class='fa fa-eye text-primary mx-1'></a>";
-                $btn = $btn . "<a href=" . route('locations.edit', ['location' => $model->id]) . " class='fa fa-edit text-primary mx-1'></a>";
-
-                return $btn;
+                return view('auctions.include.datatable._actions', [
+                        'edit_url' => route('dashboard.locations.edit',['location' => $model->id]),
+                        'show_url' => route('dashboard.locations.show',['location' => $model->id])
+                    ]);
             })
             ->rawColumns(['actions','parent.name','type','created_at']);
     }

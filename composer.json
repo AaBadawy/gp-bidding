@@ -20,6 +20,7 @@
         "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^4.2",
+        "spatie/laravel-query-builder": "^4",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {

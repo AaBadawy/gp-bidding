@@ -22,10 +22,10 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 // Global jquery
-// mix.autoload({
-// 'jquery': ['$', 'jQuery'],
-// Popper: ['popper.js', 'default'],
-// });
+mix.autoload({
+jquery: ['$', 'jQuery'],
+Popper: ['popper.js', 'default'],
+});
 
 // 3rd party plugins css/js
 mix.sass('resources/plugins/plugins.scss', 'public/plugins/global/plugins.bundle.css').then(() => {

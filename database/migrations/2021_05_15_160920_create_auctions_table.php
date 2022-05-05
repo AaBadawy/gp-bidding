@@ -25,7 +25,7 @@ class CreateAuctionsTable extends Migration
             $table->dateTime('start_at');
             $table->dateTime('end_at');
             $table->foreignId('vendor_id')->nullable()->constrained('vendors','id')->nullOnDelete();
-            $table->enum('status', ['pending','ready', 'started', 'finished'])->default('ready');
+            $table->enum('status', ['pending','ready','suspend','partial_pending', 'started', 'finished'])->default('ready');
             $table->timestamps();
 		});
 	}

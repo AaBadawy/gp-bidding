@@ -8102,6 +8102,7 @@ button.bg-white:focus {
 }
 
 .position-sticky {
+  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -8121,8 +8122,9 @@ button.bg-white:focus {
   z-index: 1030;
 }
 
-@supports (position: sticky) {
+@supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -71664,7 +71666,7 @@ code {
   bottom: 65%;
   left: -250px;
   border-radius: 35%;
-  background: white;
+  background: rgb(255, 255, 255);
   z-index: 0;
 }
 .wave:after {

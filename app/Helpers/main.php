@@ -77,4 +77,19 @@ if(! function_exists("watching")){
     }
 }
 
+if(! function_exists('build_laravel_component')) {
+    /**
+     * @param string $component
+     * @param array $attributes
+     * @return string
+     */
+    function build_laravel_component(string $component,array $attributes) {
+        $glue = "<x-$component ";
+        foreach ($attributes as $key => $value) {
+            $glue .= ":$key=$value";
+        }
+        return $glue . " />";
+    }
+}
+
 

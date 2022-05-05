@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Auction;
 use App\Entities\Bidding;
+use App\Entities\Vendor;
 use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,6 +30,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'status',
         'password',
         'type',
         'vendor_id',
@@ -89,7 +91,7 @@ class User extends Authenticatable
 
     public function involvedAuctionsDistinct()
     {
-        return $this->belongsToMany(Auction::class,'biddings',"client_id",'auction_id')->distinct();
+        return $this->belongsToMany(Auction::class,'biddings',"client_id",'auction_id')->select('auctions.*');
     }
 
     public function wonAuctions()
@@ -100,5 +102,10 @@ class User extends Authenticatable
     public function watchList()
     {
         return $this->belongsToMany(Auction::class,"watching","client_id","auction_id");
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class,'vendor_id');
     }
 }

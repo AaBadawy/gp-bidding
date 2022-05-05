@@ -120,7 +120,11 @@ class VendorsController extends Controller
     {
         if(auth()->user()->cannot('show-vendor'))
             abort(403);
-        $vendor = $this->repository->with(['employees'])->find($id);
+        $vendor = $this->repository->find($id)
+        ->load(['employees','runningAuctions','upcomingAuctions','pastAuctions'])
+        ->loadCount(['auctions','employees','runningAuctions','upcomingAuctions','pastAuctions'])
+        ->loadSum(['auctions','runningAuctions','upcomingAuctions','pastAuctions'],'current_price')
+        ->loadSum(['auctions','runningAuctions','upcomingAuctions','pastAuctions'],'start_price');
         if (request()->wantsJson()) {
 
             return response()->json([

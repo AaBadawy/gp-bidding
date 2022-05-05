@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\User;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\VendorRepository;
@@ -34,4 +35,21 @@ class VendorRepositoryEloquent extends BaseRepository implements VendorRepositor
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param Vendor $vendor
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection|mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function toggleStatus(Vendor $vendor)
+    {
+        $this->model = $vendor;
+
+        $this->model->status = $this->model->status == 'active' ? 'inactive' : 'active';
+
+        $this->model->save();
+
+        $this->resetModel();
+
+        return $this->parserResult($this->model);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -55,6 +56,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/dashboard.php'));
             $this->mapWebsiteRoutes();
+        });
+
+        Route::bind('user',function ($id) {
+            return  User::query()->where('id',$id)
+                ->when(\request()->route()->hasParameter('user_type'),
+                    fn($query) => $query->where('type',\request()->route()->parameter('user_type')))
+                ->firstOrFail();
         });
     }
 
