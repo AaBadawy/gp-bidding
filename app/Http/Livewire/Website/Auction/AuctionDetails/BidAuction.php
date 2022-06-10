@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Website\Auction\AuctionDetails;
 
 use App\Entities\Auction;
 use App\Entities\Bidding;
+use App\Events\BidCreated;
 use App\Models\User;
 use Livewire\Component;
 

@@ -19,10 +19,9 @@ class ProductFactory extends Factory
 
     public function configure()
     {
-        $imageUrl = $this->faker->imageUrl(640,480, null, false);
-
-        return $this->afterCreating(function (Product $product) use($imageUrl){
-            $product->addMediaFromUrl($imageUrl)->toMediaCollection('main_image');
+        return $this->afterCreating(function (Product $product){
+            $random_antique_image = rand(1,5);
+            $product->addMediaFromUrl(asset("/media/products/antiques/$random_antique_image.jpg"))->toMediaCollection('main_image');
         });
     }
 

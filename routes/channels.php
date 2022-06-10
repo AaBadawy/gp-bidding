@@ -17,4 +17,4 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel("auctions.{auctionId}",function () { return true;});
+Broadcast::channel("auctions.{auctionId}",function ($auctionId) { return \App\Entities\Auction::find($auctionId);});

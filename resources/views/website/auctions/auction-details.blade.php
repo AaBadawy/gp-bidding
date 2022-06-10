@@ -159,4 +159,7 @@
         </div>
     </section>
     <!--============= Product Details Section Ends Here =============-->
+
+    @push("js")
+    @endpush
 @endsection

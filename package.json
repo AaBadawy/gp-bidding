@@ -109,7 +109,7 @@
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^7.0.3",
-        "laravel-echo": "^1.11.3",
+        "laravel-echo": "^1.11.7",
         "laravel-mix": "^5.0.9",
         "lodash": "^4.17.20",
         "pusher-js": "^4.4.0",

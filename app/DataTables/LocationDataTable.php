@@ -41,6 +41,7 @@ class LocationDataTable extends DataTable
             })
             ->addColumn('actions', function ($model) {
                 return view('auctions.include.datatable._actions', [
+                        'model'     => $model,
                         'edit_url' => route('dashboard.locations.edit',['location' => $model->id]),
                         'show_url' => route('dashboard.locations.show',['location' => $model->id])
                     ]);
@@ -73,7 +74,8 @@ class LocationDataTable extends DataTable
                     ->dom("<'row'<'col-3' l><'col-6 text-right' B><'col-3' f>>
                                 <'row'<'col-12' tr>>
                                 <'row'<'col-5'i><'col-7 dataTables_pager'p>>")
-                    ->orderBy(1);
+                    ->orderBy(1)
+            ->drawCallbackWithLivewire();
     }
 
     /**

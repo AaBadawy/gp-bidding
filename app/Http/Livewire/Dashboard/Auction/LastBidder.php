@@ -33,7 +33,7 @@ class LastBidder extends Component
 
     public function getLastBidder()
     {
-        $this->lastBidder = $this->auction->lastBiding->client;
+        $this->lastBidder = $this->auction?->lastBiding?->client;
     }
 
 }
