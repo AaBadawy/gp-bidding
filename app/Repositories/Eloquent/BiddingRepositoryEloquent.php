@@ -2,19 +2,20 @@
 
 namespace App\Repositories\Eloquent;
 
-use Prettus\Repository\Eloquent\BaseRepository;
+use App\Infrastructure\Repository\EloquentRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\BiddingRepository;
 use App\Entities\Bidding;
-use App\Validators\BidddingValidator;
 
 /**
  * Class BidddingRepositoryEloquent.
  *
  * @package namespace App\Repositories\Eloquent;
  */
-class BiddingRepositoryEloquent extends BaseRepository implements BiddingRepository
+class BiddingRepositoryEloquent extends EloquentRepository implements BiddingRepository
 {
+    protected $allowedFiltersExact = ['auction_id'];
+
     /**
      * Specify Model class name
      *

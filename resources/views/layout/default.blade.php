@@ -41,6 +41,7 @@ License: You must have a valid license purchased only from themeforest(the above
         {{-- Includable CSS --}}
         @yield('styles')
         @stack('styles')
+        @livewireStyles
     </head>
 
     <body {{ \App\Classes\Theme\Metronic::printAttrs('body') }} {{ \App\Classes\Theme\Metronic::printClasses('body') }}>
@@ -59,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
         {{-- Includable JS --}}
         @yield('scripts')
         @stack('scripts')
-
+        @livewireScripts
     </body>
 </html>
 

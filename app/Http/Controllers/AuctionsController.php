@@ -119,7 +119,9 @@ class AuctionsController extends Controller
 //        $auction = $this->repository->scopeQuery(function (){
 //            return Order::basedOnAuth();
 //        })->find($id);
-        $auction = $this->repository->find($id);
+        $auction = $this->repository->find($id)
+        ->load(['biddings' => fn($query) => $query->latest()->limit(5)->with('client'),'lastBiding.client'])
+        ->loadCount(['biddings']);
 
         if (request()->wantsJson()) {
 

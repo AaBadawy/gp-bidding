@@ -23,6 +23,6 @@ class LoginController extends Controller
         if(! Auth::attempt($credential))
             return redirect()->back()->withErrors(['credential' => 'invalid email or password']);
 
-        return redirect('/');
+        return redirect()->intended();
     }
 }

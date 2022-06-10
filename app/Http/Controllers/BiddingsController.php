@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BidDataTable;
 use App\Entities\Auction;
 use App\Exceptions\ValidationException;
 use Carbon\Carbon;
@@ -55,6 +56,11 @@ class BiddingsController extends Controller
         }
 
         return view('bidddings.index', compact('bidddings'));
+    }
+
+    public function dataTable(BidDataTable $dataTable)
+    {
+        return $dataTable->render("bids.index");
     }
 
     /**

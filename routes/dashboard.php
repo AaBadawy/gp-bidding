@@ -31,3 +31,4 @@ Route::get('orders', 'OrdersController@dataTable')->name('orders.index');
 //Route::resource('users/{user_type}/','UserController')->except('index');
 Route::put('/users/{user_type}/{user}','UserActivationController')->name('users.activation');
 Route::get('/users/{user_type}/{user}','UserController@show')->name('users.show');
+Route::get("/bids","BiddingsController@datatable")->name("bids.index");

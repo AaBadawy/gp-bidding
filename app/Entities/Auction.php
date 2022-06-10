@@ -64,7 +64,7 @@ class Auction extends Model implements Transformable
 
     public function bidders()
     {
-        return $this->belongsToMany(User::class,'biddings',"auction_id",'client_id')->distinct();
+        return $this->belongsToMany(User::class,'biddings',"auction_id",'client_id')->select("users.*")->distinct();
     }
 
     public function lastBidding()
