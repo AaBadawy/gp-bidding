@@ -1,59 +1,38 @@
-@extends('adminlte::page')
-
-@section('title', 'Antique')
-
-@section('content_header')
-    <h1 class="m-0 text-dark">Dashboard</h1>
-@stop
+@extends('layout.default')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <p class="mb-0">You are logged in!</p>
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class="container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Mobile Toggle-->
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none"
+                        id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+                <!--end::Mobile Toggle-->
+
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class=" text-dark font-weight-bold my-1 mr-5 ml-2">
+                        {{ __('main.show') }} {{ __('main.home') }} </h5>
+                    <!--end::Page Title-->
+
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/') }}" class="text-muted">
+                                {{ __('main.home') }} </a>
+                        </li>
+                    </ul>
+                    <!--end::Breadcrumb-->
                 </div>
+                <!--end::Page Heading-->
             </div>
-        </div>
-        <div class="">
+            <!--end::Info-->
 
         </div>
+    </div>
 
-    </div>
-    <div class="row">
-        <h3 class="col-12 p-3">You Orders Stats</h3>
-        <x-countable-component
-            :count="\App\Entities\Order::status('pending')->count()"
-            :title="'Pending Orders'"
-            :color="'warning'"
-        />
-        <x-countable-component
-            :count="\App\Entities\Order::status('in progress')->count()"
-            :title="'In Progress Orders'"
-            :color="'info'"
-        />
-        <x-countable-component
-            :count="\App\Entities\Order::status('delivered')->count()"
-            :title="'Delivered Orders'"
-            :color="'success'"
-        />
-    </div>
-    <div class="row">
-        <h3 class="col-12 p-3">You Auctions Stats</h3>
-        <x-countable-component
-            :count="\App\Entities\Auction::status('pending')->count()"
-            :title="'Pending Auctions'"
-            :color="'warning'"
-        />
-        <x-countable-component
-            :count="\App\Entities\Auction::status('started')->count()"
-            :title="'Started Auctions'"
-            :color="'info'"
-        />
-        <x-countable-component
-            :count="\App\Entities\Auction::status('finished')->count()"
-            :title="'Finished Auctions'"
-            :color="'success'"
-        />
-    </div>
-@stop
+@endsection
