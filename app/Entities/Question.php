@@ -21,6 +21,11 @@ class Question extends Model
 
     protected $with = ['asker'];
 
+    public function ansewered()
+    {
+        return ! is_null($this->answered_at);
+    }
+
     public function scopeAnswered(Builder $builder)
     {
         return $builder->whereNotNull("answer")->whereNotNull("answered_at");

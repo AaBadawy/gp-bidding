@@ -27,6 +27,9 @@ Route::resource('/products','ProductsController')->except(['index']);
 Route::resource('/auctions','AuctionsController')->except(['index']);
 Route::get('/auctions','AuctionsController@dataTable')->name('auctions.index');
 
+Route::resource('/questions','QuestionsController')->except(['index']);
+Route::get('/questions','QuestionsController@dataTable')->name('questions.index');
+
 Route::resource('/orders','OrdersController')->except(['index']);
 Route::get('orders', 'OrdersController@dataTable')->name('orders.index');
 

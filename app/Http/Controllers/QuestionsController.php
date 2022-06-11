@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\QuestionDataTable;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,22 +26,21 @@ class QuestionsController extends Controller
     protected $repository;
 
     /**
-     * @var QuestionValidator
-     */
-    protected $validator;
-
-    /**
      * QuestionsController constructor.
      *
      * @param QuestionRepository $repository
-     * @param QuestionValidator $validator
      */
-    public function __construct(QuestionRepository $repository, QuestionValidator $validator)
+    public function __construct(QuestionRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
+    public function dataTable(QuestionDataTable $dataTable)
+    {
+        if(auth()->user()->cannot('index-auction'))
+            abort(403);
+        return $dataTable->render('questions.index');
+    }
     /**
      * Display a listing of the resource.
      *

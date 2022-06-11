@@ -276,6 +276,7 @@ return [
             'plugins/global/plugins.bundle.js',
             'plugins/custom/prismjs/prismjs.bundle.js',
             'js/scripts.bundle.js',
+            'js/app.js'
         ],
     ],
 
