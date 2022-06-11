@@ -16,13 +16,12 @@ class LastBidder extends Component
     protected function getListeners()
     {
         return [
-            "echo:auctions.{$this->auction->id}" => "getLastBidder",
+            "echo:auctions.{$this->auction->id},BidCreated" => "getLastBidder",
         ];
     }
 
     public function mount()
     {
-
         $this->getLastBidder();
     }
 
@@ -36,4 +35,8 @@ class LastBidder extends Component
         $this->lastBidder = $this->auction?->lastBiding?->client;
     }
 
+    public function block()
+    {
+        dd('will be blocked');
+    }
 }

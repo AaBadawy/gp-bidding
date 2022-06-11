@@ -97,7 +97,7 @@
                         {{--                    <div class="text-muted">Application Developer</div>--}}
                         <div class="mt-2">
                             <a href="#" class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Chat</a>
-                            <a href="#" class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1" wire:click="do">Block</a>
+                            <a href="#" class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1" wire:click="block">Block</a>
                         </div>
                     </div>
                 </div>

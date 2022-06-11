@@ -61,6 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
         @yield('scripts')
         @stack('scripts')
         @livewireScripts
+        <script src="{{ asset("js/app.js") }}" type="text/javascript"></script>
     </body>
 </html>
 

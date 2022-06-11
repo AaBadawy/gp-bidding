@@ -28,7 +28,7 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$auction->previewed_price}}</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block"><livewire:auctions.final-details :auction="$auction" :preview="'->previewed_price'"/></span>
                         <span class="font-weight-bold text-muted font-size-sm">Current Price</span>
                     </div>
                     <!--end::Body-->
@@ -51,7 +51,7 @@
 													</svg>
                                                     <!--end::Svg Icon-->
 												</span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$auction->bidders->count()}}</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block"><livewire:auctions.final-details :auction="$auction" :preview="'bidders->count()'"/></span>
                         <span class="font-weight-bold text-muted font-size-sm">Total Involved Clients</span>
                     </div>
                     <!--end::Body-->
@@ -76,7 +76,7 @@
 													</svg>
                                                     <!--end::Svg Icon-->
 												</span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$auction->biddings_count}}</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block"><livewire:auctions.final-details :auction="$auction" :preview="'->biddings()->count()'"/></span>
                         <span class="font-weight-bold text-muted font-size-sm">Total Bids</span>
                     </div>
                     <!--end::Body-->
@@ -88,7 +88,7 @@
 
         <div class="row">
 
-            <livewire:dashboard.auction.last-bidder :auction="$auction" :lastBidder="$auction?->lastBidding?->client"/>
+            <livewire:dashboard.auction.last-bidder :auction="$auction"/>
 
             <div class="col-xxl-9 order-2 order-xxl-12">
                 <!--begin::Advance Table Widget 2-->
@@ -97,7 +97,7 @@
                     <div class="card-header border-0 pt-5">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label font-weight-bolder text-dark">Auction Bids</span>
-                            <span class="text-muted mt-3 font-weight-bold font-size-sm">Total Bids are:  {{$auction->biddings_count}} </span>
+                            <span class="text-muted mt-3 font-weight-bold font-size-sm">Total Bids are:  <livewire:auctions.final-details :auction="$auction" :preview="'biddings()->count()'"/></span>
                         </h3>
                         @if($auction->biddings_count > 0)
                             <div class="card-toolbar">
@@ -146,7 +146,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-right">
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${{$bid->amount_price}}</span>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Egp {{$bid->amount_price}}</span>
                                                     <span class="text-muted font-weight-bold">Paid</span>
                                                 </td>
                                                 <td class="text-right">
@@ -201,6 +201,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 
