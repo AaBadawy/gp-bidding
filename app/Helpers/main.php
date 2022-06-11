@@ -92,4 +92,25 @@ if(! function_exists('build_laravel_component')) {
     }
 }
 
+if(! function_exists('notification_url')) {
+    function notification_url(\Illuminate\Notifications\DatabaseNotification $notification,string $base_route = 'dashboard.')
+    {
+        if(array_key_exists("url",$notification->data))
+            return $notification->data['url'];
+
+        if(array_key_exists('route',$notification->data))
+            return route($notification->data['route']);
+
+        $glow = \Illuminate\Support\Str::of($notification->data['model'])->plural()->lower();
+        $params = [];
+        if(array_key_exists('id',$notification->data)) {
+            $params[(string) $glow->singular()] = $notification->data['id'];
+            $glow .= '.show';
+        } else {
+            $glow .= '.index';
+        }
+        return route($base_route . $glow, $params);
+    }
+}
+
 

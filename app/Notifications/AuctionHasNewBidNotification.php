@@ -2,12 +2,13 @@
 
 namespace App\Notifications;
 
+use App\Entities\Auction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AuctionHasNewBid extends Notification
+class AuctionHasNewBidNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -16,7 +17,7 @@ class AuctionHasNewBid extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(protected Auction $auction)
     {
         //
     }
@@ -29,7 +30,7 @@ class AuctionHasNewBid extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +56,10 @@ class AuctionHasNewBid extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'model'     => 'auction',
+            'id'        => $this->auction->id,
+            'title'     => "new bid added on auction #{$this->auction->id}",
+            'content'   => "the auction with title {$this->auction->name} current price is {$this->auction->previewed_price} after last Bid"
         ];
     }
 }

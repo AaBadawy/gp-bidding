@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Dashboard\DashboardController')->name('dashboard');
-
+Route::group(['prefix' => 'profile'],function () {
+   Route::get("notifications","Auth\MyNotificationsController");
+});
 Route::get('/locations', 'LocationsController@dataTable')->name('locations.index');
 Route::resource('/locations', 'LocationsController')->except(['index']);
 

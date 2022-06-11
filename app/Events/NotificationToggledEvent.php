@@ -2,14 +2,16 @@
 
 namespace App\Events;
 
-use App\Entities\Auction;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Queue\SerializesModels;
 
-class BidCreated implements ShouldBroadcast
+class NotificationToggledEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -18,7 +20,7 @@ class BidCreated implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(public Auction $auction)
+    public function __construct(public DatabaseNotification $notification)
     {
         //
     }
@@ -30,6 +32,14 @@ class BidCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel("auctions.{$this->auction->id}");
+        return new PrivateChannel('notification-toggled');
+    }
+
+    public function broadcastWith():array
+    {
+        return [
+            'notification' => $this->notification,
+            'added'        => is_null($this->notification->read_at)
+        ];
     }
 }

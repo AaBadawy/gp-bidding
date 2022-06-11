@@ -87,6 +87,11 @@ class Auction extends Model implements Transformable
         return $this->hasMany(Product::class);
     }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class,'auction_id');
+    }
+
     public function scopeStatus($query,$status)
     {
         return $query->where('status',$status);
@@ -140,5 +145,12 @@ class Auction extends Model implements Transformable
     public function isExpired():bool
     {
         return today()->greaterThanOrEqualTo($this->end_at);
+    }
+
+    public function scopeForUser(Builder $builder,User $user,bool $accessFromDashboard = true)
+    {
+        if($user->typeIs('vendor') && $accessFromDashboard)
+            return $builder->whereBelongsTo($user->vendor,'vendor');
+        return $builder;
     }
 }

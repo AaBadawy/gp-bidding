@@ -18,3 +18,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel("auctions.{auctionId}",function ($auctionId) { return \App\Entities\Auction::find($auctionId);});
+
+Broadcast::channel("notification-toggled",function ($user) {
+    return true;
+});

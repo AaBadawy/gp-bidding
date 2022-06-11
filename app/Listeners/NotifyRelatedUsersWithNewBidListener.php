@@ -8,7 +8,7 @@ use App\Notifications\AuctionHasNewBidNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class NotifyVendorWithNewBid
+class NotifyRelatedUsersWithNewBidListener
 {
     /**
      * Create the event listener.
@@ -28,6 +28,6 @@ class NotifyVendorWithNewBid
      */
     public function handle(BidCreated $event)
     {
-        $event->auction->vendor->employees->each(fn(User $employee) => $employee->notify(new AuctionHasNewBidNotification()));
+        $event->auction->vendor->employees->each(fn(User $employee) => $employee->notify(new AuctionHasNewBidNotification($event->auction)));
     }
 }

@@ -6,6 +6,7 @@ use App\DataTables\AuctionDataTable;
 use App\Entities\Auction;
 use App\Entities\Order;
 use App\Entities\Product;
+use App\Models\User;
 use App\Repositories\Contracts\VendorRepository;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,6 @@ class AuctionsController extends Controller
     {
         if(auth()->user()->cannot('index-auction'))
             abort(403);
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 
         $auctions = $this->repository->scopeQuery(function (){
             return Auction::basedOnAuth();
@@ -119,7 +119,7 @@ class AuctionsController extends Controller
 //        $auction = $this->repository->scopeQuery(function (){
 //            return Order::basedOnAuth();
 //        })->find($id);
-        $auction = $this->repository->find($id)
+        $auction = $this->repository->scopeQuery(fn($query) => $query->forUser(auth()->user()))->find($id)
         ->load(['biddings' => fn($query) => $query->latest()->limit(5)->with('client'),'lastBiding.client'])
         ->loadCount(['biddings']);
 
