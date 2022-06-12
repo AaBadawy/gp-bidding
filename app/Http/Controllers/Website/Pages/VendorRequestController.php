@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website\Pages;
 
+use App\DataTables\VendorRequestDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Repositories\Contracts\VendorRequestRepository;

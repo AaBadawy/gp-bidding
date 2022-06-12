@@ -84,7 +84,9 @@ class VendorsController extends Controller
         try {
 
             $vendor = $this->repository->create($request->only(['name', 'email', 'website', 'description']));
-            $vendor->owner()->create(['is_owner' => 1])->user()->create($request['owner']);
+            $owner = $request->validated()['owner'];
+            $owner['is_owner'] = 1;
+            $vendor->owner()->create($owner);
             $response = [
                 'message' => 'Vendor created.',
                 'data'    => $vendor->toArray(),

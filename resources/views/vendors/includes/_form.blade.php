@@ -1,4 +1,4 @@
-<form method="POST" action="{{$action === 'create' ? route('vendors.store') : route('vendors.update', ['vendor' => $vendor->id])}}">
+<form method="POST" action="{{$action === 'create' ? route('dashboard.vendors.store') : route('dashboard.vendors.update', ['vendor' => $vendor->id])}}">
     @csrf
     @if($action === 'edit')
         @method('PUT')

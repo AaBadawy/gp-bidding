@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\VendorRequestDataTable;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +11,6 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\VendorRequestCreateRequest;
 use App\Http\Requests\VendorRequestUpdateRequest;
 use App\Repositories\Contracts\VendorRequestRepository;
-use App\Validators\VendorRequestValidator;
 
 /**
  * Class VendorRequestsController.
@@ -25,20 +25,18 @@ class VendorRequestsController extends Controller
     protected $repository;
 
     /**
-     * @var VendorRequestValidator
-     */
-    protected $validator;
-
-    /**
      * VendorRequestsController constructor.
      *
      * @param VendorRequestRepository $repository
-     * @param VendorRequestValidator $validator
      */
-    public function __construct(VendorRequestRepository $repository, VendorRequestValidator $validator)
+    public function __construct(VendorRequestRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+    }
+
+    public function dataTable(VendorRequestDataTable $dataTable)
+    {
+        return $dataTable->render("vendor-requests.index");
     }
 
     /**

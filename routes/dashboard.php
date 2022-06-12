@@ -43,3 +43,4 @@ Route::put('/users/{user_type}/{user}','UserActivationController')->name('users.
 Route::get('/users/{user_type}/{user}','UserController@show')->name('users.show');
 Route::get("/bids","BiddingsController@datatable")->name("bids.index");
 Route::get("chats","ChatPageController")->name("my-chats");
+Route::get("vendor-requests",'VendorRequestsController@dataTable')->name('vendor-requests');

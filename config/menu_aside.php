@@ -78,6 +78,19 @@ return [
         [
             'section' =>'controlling'
         ],
+        [
+            'title' => 'vendor-requests',
+            'desc' => '',
+            'icon' => 'media/svg/icons/Tools/Angle Grinder.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'All Requests',
+                    'page' => 'vendor-requests'
+                ],
+            ]
+        ],
 
     ],
 

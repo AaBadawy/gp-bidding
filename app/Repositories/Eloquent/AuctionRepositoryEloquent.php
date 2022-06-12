@@ -18,6 +18,7 @@ class AuctionRepositoryEloquent extends EloquentRepository implements AuctionRep
     protected $allowedFiltersExact = [
         'winner_id',
         'vendor_id',
+        'category_id'
     ];
 
     /**

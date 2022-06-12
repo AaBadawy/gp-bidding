@@ -25,7 +25,7 @@ class Auction extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name','description','start_price','biding_type','bidding_price',"current_price",'start_at','end_at','vendor_id','status',"winner_id"];
+    protected $fillable = ['name','description','start_price','biding_type','bidding_price',"current_price",'start_at','end_at','vendor_id','status',"winner_id",'category_id'];
 
     protected $dates = ['end_at','start_at'];
 

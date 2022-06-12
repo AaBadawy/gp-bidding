@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -24,7 +25,12 @@ class VendorRequest extends Model
         "name",
         "email",
         "mobile",
-        "note"
+        "note",
+        'vendor_id'
     ];
 
+    public function requester()
+    {
+        return $this->belongsTo(User::class,'requester_id');
+    }
 }

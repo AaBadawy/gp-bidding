@@ -15,7 +15,8 @@ class AllAuctionsController extends Controller
 
     public function __invoke()
     {
-        $auctions  = $this->auctionRepository->orderBy('start_at')->paginate(request()->per_page);
+//        dd(request()->all());
+        $auctions  = $this->auctionRepository->spatie()->orderBy('start_at')->paginate(request()->per_page);
 
         return view("website.auctions.index",compact('auctions'));
     }

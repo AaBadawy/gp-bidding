@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Entities\Auction;
+use App\Entities\Category;
 use App\Entities\Vendor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -30,7 +31,8 @@ class AuctionFactory extends Factory
             'start_at' => $this->faker->dateTime,
             'end_at' => $this->faker->dateTime,
             'vendor_id' => $this->faker->randomElement($this->vendorIds()),
-            'status' => $this->faker->randomElement(['pending', 'ready', 'started' , 'finished'])
+            'status' => $this->faker->randomElement(['pending', 'ready', 'started' , 'finished']),
+            'category_id'   => Category::query()->inRandomOrder()->limit(1)->first()?->id,
         ];
     }
     public function vendorIds()

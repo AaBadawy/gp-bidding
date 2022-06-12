@@ -27,10 +27,10 @@ class VendorDataTable extends DataTable
                 return "<span>$created_at</span>";
             })
             ->addColumn('actions', function ($model) {
-                $btn = "<a href=" . route('vendors.show', ['vendor' => $model->id]) . " class='fa fa-eye text-primary mx-1'></a>";
-                $btn = $btn . "<a href=" . route('vendors.edit', ['vendor' => $model->id]) . " class='fa fa-edit text-primary mx-1'></a>";
-
-                return $btn;
+                return view('auctions.include.datatable._actions',[
+                    'show_url'  => route('dashboard.vendors.show',['vendor' => $model->id]),
+                    'model'     => $model,
+                ]);
             })
             ->rawColumns(['actions', 'created_at']);
     }

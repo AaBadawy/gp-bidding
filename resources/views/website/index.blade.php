@@ -42,7 +42,7 @@
         <div class="m--15">
             <div class="browse-slider owl-theme owl-carousel">
                 @foreach(\App\Entities\Category::get() as $category)
-                    <a href="#0" class="browse-item">
+                    <a href="{{route('website.auction.index',['filter' => ['category_id' => $category->id]])}}" class="browse-item">
                         <img src="{{$category->getFirstMediaUrl('category')}}" alt="auction">
                         <span class="info">{{$category->name}}</span>
                     </a>
