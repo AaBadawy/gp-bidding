@@ -44,8 +44,8 @@ class ProductsController extends Controller
 
     public function dataTable(ProductDataTable $dataTable)
     {
-        if(auth()->user()->cannot('index-product'))
-            abort(403);
+//        if(auth()->user()->cannot('index-product'))
+//            abort(403);
 
         return $dataTable->render('products.index');
     }
@@ -56,8 +56,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->cannot('index-product'))
-            abort(403);
+//        if(auth()->user()->cannot('index-product'))
+//            abort(403);
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $products = $this->repository->all();
 
@@ -76,8 +76,8 @@ class ProductsController extends Controller
      */
     public function create(){
 
-        if(auth()->user()->cannot('create-product'))
-            abort(403);
+//        if(auth()->user()->cannot('create-product'))
+//            abort(403);
         return view('products.create');
     }
 
@@ -92,8 +92,12 @@ class ProductsController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
+        $data = $request->validated();
+
+        if($request->user()->isVendor())
+            $data['vendor_id'] = auth()->user()->vendor()->value('id');
         try {
-            $product = $this->repository->create($request->validated());
+            $product = $this->repository->create($data);
 
             if($request->hasFile('main_image'))
                 $product->addMediaFromRequest('main_image')->toMediaCollection('main_image');
@@ -152,9 +156,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->cannot('edit-product'))
-            abort(403);
-        $product = $this->repository->find($id);
+//        if(auth()->user()->cannot('edit-product'))
+//            abort(403);
+        $product = $this->repository->scopeQuery(fn($q) =>$q->forUser(auth()->user()))->find($id);
 
         return view('products.edit', compact('product'));
     }
@@ -171,11 +175,17 @@ class ProductsController extends Controller
      */
     public function update(ProductUpdateRequest $request, $id)
     {
+
+        $data = $request->validated();
+
+        if($request->user()->isVendor())
+            $data['vendor_id'] = auth()->user()->vendor()->value('id');
+
         try {
 
           //  $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $product = $this->repository->update($request->all(), $id);
+            $product = $this->repository->update($data, $id);
 
             $response = [
                 'message' => 'Product updated.',

@@ -15,6 +15,8 @@ class PrivateChat extends Component
 
     public string|null $body = '';
 
+    protected $listeners = ['chatWith-changed' => 'setChatWith'];
+
     public function mount()
     {
 
@@ -40,18 +42,25 @@ class PrivateChat extends Component
     {
         if(is_null($this->chatWith))
             $this->chatMessages = collect();
-        $this->chatMessages = Chat::query()->whereIn("from_id",[auth()->id(),$this->chatWith->id])->whereIn("to_id",[auth()->id(),$this->chatWith->id])->with(['from','to'])->orderBy("created_at")->get();
+        $this->chatMessages = Chat::query()->whereIn("from_id",[auth()->id(),$this?->chatWith?->id])->whereIn("to_id",[auth()->id(),$this->chatWith?->id])->with(['from','to'])->orderBy("created_at")->get();
     }
 
     public function send()
     {
-        if(empty($this->body))
-            return ;
-        Chat::query()->create([
-            'from_id' => auth()->id(),
-            'to_id'   => $this->chatWith->id,
-            'body'    => $this->body,
-        ]);
-        $this->body = '';
+        if(! empty($this->body)) {
+            Chat::query()->create([
+                'from_id' => auth()->id(),
+                'to_id' => $this->chatWith->id,
+                'body' => $this->body,
+            ]);
+            $this->body = '';
+        }
+    }
+
+    public function setChatWith(User $chatWith)
+    {
+//        dd($chatWith->name);
+        $this->chatWith = $chatWith;
+//        dd($this->chatWith);
     }
 }

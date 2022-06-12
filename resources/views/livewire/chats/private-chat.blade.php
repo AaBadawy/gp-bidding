@@ -1,3 +1,4 @@
+@if($chatWith instanceof  \App\Models\User)
 <div class="card card-custom">
     <!--begin::Header-->
     <div class="card-header align-items-center px-4 py-3">
@@ -13,7 +14,7 @@
             <!--end::Dropdown Menu-->
         </div>
         <div class="text-center flex-grow-1">
-            <div class="text-dark-75 font-weight-bold font-size-h5">{{$chatWith->name}}</div>
+            <div class="text-dark-75 font-weight-bold font-size-h5">{{$chatWith?->name}}</div>
             <div>
 {{--                <span class="label label-sm label-dot label-success"></span>--}}
 {{--                <span class="font-weight-bold text-muted font-size-sm">Active</span>--}}
@@ -55,3 +56,8 @@
     </div>
     <!--end::Footer-->
 </div>
+@else
+    <div>
+
+    </div>
+@endif

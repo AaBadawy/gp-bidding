@@ -2,23 +2,19 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Infrastructure\Repository\EloquentRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\ProductRepository;
-use App\Entities\Product;
+use App\Repositories\Contracts\BlockRepository;
+use App\Entities\Block;
+use App\Validators\BlockValidator;
 
 /**
- * Class ProductRepositoryEloquent.
+ * Class BlockRepositoryEloquent.
  *
  * @package namespace App\Repositories\Eloquent;
  */
-class ProductRepositoryEloquent extends EloquentRepository implements ProductRepository
+class BlockRepositoryEloquent extends BaseRepository implements BlockRepository
 {
-    protected $allowedFiltersExact = [
-        'product.category_id'
-    ];
-
     /**
      * Specify Model class name
      *
@@ -26,10 +22,10 @@ class ProductRepositoryEloquent extends EloquentRepository implements ProductRep
      */
     public function model()
     {
-        return Product::class;
+        return Block::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -38,5 +34,5 @@ class ProductRepositoryEloquent extends EloquentRepository implements ProductRep
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }

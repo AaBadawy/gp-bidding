@@ -24,4 +24,9 @@ class MyClients extends Component
     {
         return view('livewire.chats.my-clients');
     }
+
+    public function chatWith($chat_with_id)
+    {
+        $this->emitTo('chats.private-chat','chatWith-changed',User::find($chat_with_id));
+    }
 }

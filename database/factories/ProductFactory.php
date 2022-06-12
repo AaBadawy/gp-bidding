@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Entities\Auction;
+use App\Entities\Category;
 use App\Entities\Product;
 use App\Entities\Vendor;
 use App\Models\Model;
@@ -38,6 +39,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->numberBetween(),
             'description' => $this->faker->text,
             'vendor_id' => $this->faker->randomElement($this->vendorsIds()),
+            'category_id' => Category::query()->inRandomOrder()->value('id'),
         ];
     }
 

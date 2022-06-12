@@ -76,4 +76,9 @@ class Vendor extends Model implements Transformable
     {
         return $this->status == 'active';
     }
+
+    public function blockList()
+    {
+        return $this->belongsToMany(User::class,'blocks','vendor_id','blocked_id');
+    }
 }

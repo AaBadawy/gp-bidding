@@ -6,10 +6,13 @@ use App\Entities\Auction;
 use App\Entities\Bidding;
 use App\Events\BidCreated;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class BidAuction extends Component
 {
+    use AuthorizesRequests;
+
     public Auction $auction;
 
     public float $lastBid;
@@ -55,6 +58,8 @@ class BidAuction extends Component
 
     public function bid()
     {
+        $this->authorize('create',[Bidding::class,$this->auction]);
+
         $this->validate();
 
         $this->auction->biddings()->create([

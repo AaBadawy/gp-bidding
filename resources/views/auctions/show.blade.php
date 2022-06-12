@@ -143,6 +143,7 @@
                                                     <div>
                                                         <span class="font-weight-bolder">Email:</span>
                                                         <a class="text-muted font-weight-bold text-hover-primary" href="#">{{$bid->client->email}}</a>
+                                                        <livewire:block-client :client="$bid->client" />
                                                     </div>
                                                 </td>
                                                 <td class="text-right">

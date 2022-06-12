@@ -34,7 +34,7 @@
                             <img alt="Pic" src="{{asset("media/users/300_12.jpg")}}" />
                         </div>
                         <div class="d-flex flex-column">
-                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{$client->name}}</a>
+                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg" wire:click="chatWith({{$client->id}})">{{$client->name}}</a>
                             <span class="text-muted font-weight-bold font-size-sm">{{$client->email}}</span>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ class Questions extends Component
 
     public string $title = '';
 
+    public string $successMessage = '';
     protected function rules():array
     {
         return [
@@ -33,5 +34,7 @@ class Questions extends Component
             'title'     => $this->title,
             'asked_by'  => auth()->id()
         ]);
+        $this->successMessage =  'your question had been sent to the auction owner \\n once it answered will be chown here';
+        $this->title = '';
     }
 }

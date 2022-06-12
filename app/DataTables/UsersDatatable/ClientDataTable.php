@@ -1,8 +1,10 @@
 <?php
 
 namespace App\DataTables\UsersDatatable;
+use App\Http\Livewire\BlockClient;
 use App\Models\User;
 use Carbon\Carbon;
+use Livewire\Livewire;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -27,10 +29,12 @@ class ClientDataTable extends DataTable
                 return "<span>$created_at</span>";
             })
             ->addColumn('actions', function ($model) {
-                return view('auctions.include.datatable._actions',[
-                    'edit_url' => route("dashboard.users.edit",['user'=> $model->id,'user_type' => 'client']),
-                    'model' => $model
-                ]);
+                if(auth()->user()->isAdmin())
+                    return view('auctions.include.datatable._actions',[
+                        'edit_url' => route("dashboard.users.edit",['user'=> $model->id,'user_type' => 'client']),
+                        'model' => $model
+                    ]);
+                return Livewire::mount(BlockClient::class,['client' => $model])->html();
             })
             ->rawColumns(['actions','type','created_at']);
     }
@@ -44,6 +48,7 @@ class ClientDataTable extends DataTable
     public function query(User $model)
     {
         return $model->newQuery()->clientType()
+            ->forUser(auth()->user())
             ->select('users.*');
     }
 

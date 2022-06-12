@@ -31,7 +31,7 @@ class Product extends Model implements Transformable , HasMedia
      */
     protected $table = 'products';
 
-    protected $fillable = ['name','vendor_id','auction_id','description','price','sold', 'ml_id', 'ml_title'];
+    protected $fillable = ['name','vendor_id','auction_id','description','price','sold', 'ml_id', 'ml_title','category_id'];
 
     public $timestamps = true ;
 

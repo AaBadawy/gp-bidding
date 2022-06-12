@@ -68,21 +68,21 @@
 		    </a>
 
 		    {{-- Item --}}
-		    <a href="#"  class="navi-item">
+		    <a href="{{route('dashboard.my-chats')}}"  class="navi-item">
 		        <div class="navi-link">
 					<div class="symbol symbol-40 bg-light mr-3">
 						<div class="symbol-label">
  						   {{ \App\Classes\Theme\Metronic::getSVG("media/svg/icons/Shopping/Chart-bar1.svg", "svg-icon-md svg-icon-warning") }}
  					   </div>
 				   	</div>
-		            <div class="navi-text">
+		            <nav class="navi-text">
 		                <div class="font-weight-bold">
 		                    My Messages
 		                </div>
 		                <div class="text-muted">
-		                    Inbox and tasks
+                            all chats
 		                </div>
-		            </div>
+		            </nav>
 		        </div>
 		    </a>
 

@@ -40,6 +40,8 @@ class InvolvedAuctions extends Component
             ->{$this->status}()
             ->withCount("biddings")
             ->latest()
-            ->paginate($this->perPage);
+            ->get()
+            ->unique();
+//            ->paginate($this->perPage);
     }
 }

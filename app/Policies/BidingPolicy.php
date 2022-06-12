@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Entities\Auction;
 use \App\Entities\Bidding;
+use App\Entities\Block;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -46,6 +47,9 @@ class BidingPolicy
     {
 //        if(today()->greaterThanOrEqualTo($auction->end_at))
 //            return Response::deny("This auction is Expired!");
+
+        if($user->isClient() && Block::query()->where("vendor_id",$auction->vendor()->value('id'))->where("blocked_id",$user->id)->exists())
+            return Response::deny("badly you cant make any action on this auction!");
 
         $condition = true;
 

@@ -112,11 +112,30 @@ class User extends Authenticatable
 
     public function chatters()
     {
-        return $this->belongsToMany(User::class,"chats",'to_id','from_id');
+        return $this->belongsToMany(User::class,"chats",'from_id','to_id');
     }
 
     public function chats()
     {
         return $this->hasMany(Chat::class,"from_id");
+    }
+
+    public function scopeMyEmployees(Builder $builder,User $user)
+    {
+        if($user->isVendor())
+        return $builder->where('vendor_id',$user->vendor_id);
+        return $builder;
+    }
+
+    public function scopeForUser(Builder $builder,User $user)
+    {
+        if($user->isAdmin())
+            return $builder;
+        if($user->isVendor())
+            return $builder->whereIn('id',Bidding::query()->whereHas("auction",fn($q) => $q->where("vendor_id",$user->vendor()->value('id')))->select("client_id")->distinct());
+//            return $builder->whereHas('vendor',function ($query) {
+//                return $query->whereHas('auctions', fn($q) => $q->)
+//            });
+        return $builder;
     }
 }
