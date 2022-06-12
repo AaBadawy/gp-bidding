@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta charset="utf-8"/>
 
         {{-- Title Section --}}
-        <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>
+{{--        <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>--}}
 
         {{-- Meta Data --}}
         <meta name="description" content="@yield('page_description', $page_description ?? '')"/>
@@ -56,6 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
         @foreach(config('layout.resources.js') as $script)
             <script src="{{ asset($script) }}" type="text/javascript"></script>
         @endforeach
+        <script src="{{asset("js/app.js")}}"></script>
 
         {{-- Includable JS --}}
         @yield('scripts')

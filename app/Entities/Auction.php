@@ -92,6 +92,16 @@ class Auction extends Model implements Transformable
         return $this->hasMany(Question::class,'auction_id');
     }
 
+    public function notAnsweredQuestions()
+    {
+        return $this->questions()->whereNull("answer");
+    }
+
+    public function answeredQuestions()
+    {
+        return $this->questions()->whereNotNull("answer");
+    }
+
     public function scopeStatus($query,$status)
     {
         return $query->where('status',$status);
@@ -152,5 +162,15 @@ class Auction extends Model implements Transformable
         if($user->typeIs('vendor') && $accessFromDashboard)
             return $builder->whereBelongsTo($user->vendor,'vendor');
         return $builder;
+    }
+
+    public function stillRunning():bool
+    {
+        return now()->lessThanOrEqualTo($this->end_at) && now()->greaterThanOrEqualTo($this->start_at);
+    }
+
+    public function notStarted()
+    {
+        return now()->lessThan($this->start_at);
     }
 }

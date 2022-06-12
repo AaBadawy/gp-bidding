@@ -32,8 +32,10 @@ class VendorDataTable extends DataTable
                 return "<span>$parent</span>";
             })
             ->addColumn('actions', function ($model) {
-                $btn = "<a href=" . route('dashboard.users.show', ['user' => $model->id,'user_type' => 'vendor']) . " class='fa fa-eye text-primary mx-1'></a>";
-                return $btn . "<a href=" . route('dashboard.users.edit', ['user' => $model->id,'user_type' => 'vendor']) . " class='fa fa-edit text-primary mx-1'></a>";
+                return view('auctions.include.datatable._actions',[
+                    'edit_url' => route("dashboard.users.edit",['user'=> $model->id,'user_type' => 'vendor']),
+                    'model' => $model
+                ]);
             })
             ->rawColumns(['actions','parent.name','type','created_at']);
     }
@@ -48,6 +50,7 @@ class VendorDataTable extends DataTable
     {
         return $model->newQuery()
             ->vendorType()
+            ->with("vendor")
             ->select('users.*');
     }
 
@@ -70,6 +73,21 @@ class VendorDataTable extends DataTable
                 ->width(60)
                 ->addClass('text-center'),
         ];
+    }
+
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html()
+    {
+        return $this->builder()
+            ->setTableId('auction-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)->drawCallbackWithLivewire();
     }
 
     /**

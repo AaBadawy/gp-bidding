@@ -21,7 +21,12 @@ class ProductDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'product.action');
+            ->addColumn('action', function ($model) {
+                return view('auctions.include.datatable._actions' ,[
+                    'edit_url' => route("dashboard.products.edit",['product' =>$model->id]),
+                    'model'     => $model,
+                ]);
+            });
     }
 
     /**
@@ -32,7 +37,7 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model)
     {
-        return $model->newQuery()->forUser(auth()->user())->select('products.*');
+        return $model->newQuery()->forUser(auth()->user())->with('vendor')->select('products.*');
     }
 
     /**
@@ -49,7 +54,7 @@ class ProductDataTable extends DataTable
                     ->dom("<'row'<'col-3' l><'col-6 text-right' B><'col-3' f>>
                                         <'row'<'col-12' tr>>
                                         <'row'<'col-5'i><'col-7 dataTables_pager'p>>")
-                    ->orderBy(1);
+                    ->orderBy(1)->drawCallbackWithLivewire();
     }
 
     /**
@@ -59,12 +64,16 @@ class ProductDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns =  [
             Column::make('id'),
             Column::make('name'),
             Column::make('price'),
             Column::make('created_at'),
         ];
+        if(auth()->user()->isAdmin())
+            $columns[] = Column::make('vendor.name')->title('vendor name');
+        $columns[] = Column::computed('action');
+        return $columns;
     }
 
     /**

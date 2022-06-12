@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Entities\Question;
 use App\Http\Livewire\Questions\SubmitAnswer;
+use App\Repositories\Contracts\QuestionRepository;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -24,7 +25,7 @@ class QuestionDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn("answered_at",function ($model){
-                $answered_at = $model->answered_at->format("Y-m-d H:m");
+                $answered_at = $model->answered_at?->format("Y-m-d H:m");
                 return "<span>$answered_at</span>";
             })
             ->editColumn("auction_id",function ($model) {
@@ -32,6 +33,8 @@ class QuestionDataTable extends DataTable
                 return "<span class='text-primary'><a href='$route'>$model->id  <i class='fa fa-link'></i></a></span>";
             })
             ->addColumn('submit_answer',function ($model){
+                if($model->answered())
+                    return ;
                 return Livewire::mount(SubmitAnswer::class, ['question' => $model])->html();
             })
             ->addColumn('action', 'question.action')
@@ -44,9 +47,11 @@ class QuestionDataTable extends DataTable
      * @param Question $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Question $model)
+    public function query(Question $model,QuestionRepository $repository)
     {
-        return $model->newQuery();
+        $query = $repository->spatie()->toBase();
+
+        return $model->newQuery()->setQuery($query)->select("questions.*");
     }
 
     /**

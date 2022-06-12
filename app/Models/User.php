@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Auction;
 use App\Entities\Bidding;
+use App\Entities\Chat;
 use App\Entities\Vendor;
 use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -107,5 +108,15 @@ class User extends Authenticatable
     public function vendor()
     {
         return $this->belongsTo(Vendor::class,'vendor_id');
+    }
+
+    public function chatters()
+    {
+        return $this->belongsToMany(User::class,"chats",'to_id','from_id');
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class,"from_id");
     }
 }

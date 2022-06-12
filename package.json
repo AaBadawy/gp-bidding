@@ -37,6 +37,7 @@
         "bootstrap": "4.6.0",
         "bootstrap-datepicker": "^1.9.0",
         "bootstrap-daterangepicker": "^3.1.0",
+        "bootstrap-datetimepicker-npm": "^4.17.37-npm",
         "bootstrap-markdown": "^2.10.0",
         "bootstrap-maxlength": "^1.10.0",
         "bootstrap-notify": "^3.1.3",

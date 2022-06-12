@@ -108,7 +108,7 @@ class ProductsController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect()->route('dashboard.products.index')->with('message', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -156,7 +156,7 @@ class ProductsController extends Controller
             abort(403);
         $product = $this->repository->find($id);
 
-        return view('Product.edit', compact('product'));
+        return view('products.edit', compact('product'));
     }
 
     /**

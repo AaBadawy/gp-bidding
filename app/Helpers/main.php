@@ -113,4 +113,14 @@ if(! function_exists('notification_url')) {
     }
 }
 
+if(! function_exists("old_or"))
+{
+    function old_or(string $key,string|\Illuminate\Database\Eloquent\Model|null $value = null)
+    {
+        if($value instanceof \Illuminate\Database\Eloquent\Model)
+            $value = $value?->$key;
+        return old($key,$value);
+    }
+}
+
 

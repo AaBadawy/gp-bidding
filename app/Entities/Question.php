@@ -21,9 +21,9 @@ class Question extends Model
 
     protected $with = ['asker'];
 
-    public function ansewered()
+    public function answered()
     {
-        return ! is_null($this->answered_at);
+        return ! is_null($this->answer);
     }
 
     public function scopeAnswered(Builder $builder)

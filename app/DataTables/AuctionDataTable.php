@@ -29,11 +29,15 @@ class AuctionDataTable extends DataTable
             ->editColumn('end_at',fn($model) => "<span>{$model->end_at->format('Y-m-d H:m')}</span>")
             ->editColumn('created_at',fn($model) => "<span>{$model->created_at->format('Y-m-d H:m')}</span>")
             ->editColumn('status',fn($model) => (new ColumnType(['pending' => 'secondary','ready' => 'warning', 'started' =>'info', 'finished' => 'primary'],$model->status))->render())
-            ->addColumn('action', fn($model) =>
-                view('auctions.include.datatable._actions', [
+            ->addColumn('action', function($model) {
+                $data = [
                     'edit_url' => route('dashboard.auctions.edit',['auction' => $model->id]),
-                    'show_url' => route('dashboard.auctions.show',['auction' => $model->id])
-                ]))
+                    'show_url' => route('dashboard.auctions.show',['auction' => $model->id]),
+                ];
+                if(auth()->user()->can('delete',$model))
+                    $data['model'] = $model;
+                return view('auctions.include.datatable._actions',$data);
+            })
             ->rawColumns(['action','status','start_at','end_at','created_at','previewed_price','winner.name']);
     }
 
@@ -47,7 +51,7 @@ class AuctionDataTable extends DataTable
     {
         $query = $repository->spatie()->toBase();
 
-        return $model->newQuery()->setQuery($query)->with(['winner','vendor'])->select('auctions.*');
+        return $model->newQuery()->setQuery($query)->with(['winner','vendor'])->forUser(auth()->user())->select('auctions.*');
     }
 
     /**
@@ -62,7 +66,7 @@ class AuctionDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1);
+                    ->orderBy(1)->drawCallbackWithLivewire();
     }
 
     /**

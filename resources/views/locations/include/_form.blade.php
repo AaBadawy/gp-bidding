@@ -1,8 +1,5 @@
-<form method="POST" action="{{$action === 'create' ? route('locations.store') : route('locations.update', ['location' => $location->id])}}">
-    @csrf
-    @if($action === 'edit')
-        @method('PUT')
-    @endif
+
+<div class="card-body">
     <div class="card-header">
         <h3>Location Details</h3>
     </div>
@@ -10,7 +7,7 @@
         <label for="exampleInputEmail1">Name <span class="text-danger"> * </span></label>
         <input type="name" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter name" value="{{$action === 'edit' ? $location->name : old('name')}}">
         @error('name')
-            <small class="form-text text-danger">{{$message}}</small>
+        <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>
     <div class="form-group">
@@ -21,7 +18,7 @@
             <option value="region" {{$action === 'edit' && $location->type === 'region' ? 'selected': (old('type') == 'region' ? 'selected' : '')}}>region</option>
         </select>
         @error('type')
-            <small class="form-text text-danger">{{$message}}</small>
+        <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>
     <div class="form-group">
@@ -33,16 +30,8 @@
             @endforeach
         </select>
         @error('parent_id')
-            <small class="form-text text-danger">{{$message}}</small>
+        <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-{{--@push('js')--}}
-{{--    <script>--}}
-{{--        $(document).ready(function() {--}}
-{{--            $('#locations-select2').select2();--}}
-{{--            $('#type-select2').select2();--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endpush--}}
+</div>

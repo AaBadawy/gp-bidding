@@ -2,28 +2,19 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Infrastructure\Repository\EloquentRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\QuestionRepository;
-use App\Entities\Question;
-use App\Validators\QuestionValidator;
+use App\Repositories\Contracts\ChatRepository;
+use App\Entities\Chat;
+use App\Validators\ChatValidator;
 
 /**
- * Class QuestionRepositoryEloquent.
+ * Class ChatRepositoryEloquent.
  *
  * @package namespace App\Repositories\Eloquent;
  */
-class QuestionRepositoryEloquent extends EloquentRepository implements QuestionRepository
+class ChatRepositoryEloquent extends BaseRepository implements ChatRepository
 {
-    protected $allowedFiltersExact = [
-        'auction_id'
-    ];
-
-    protected $allowedFilterScopes = [
-        'answered'
-    ];
-
     /**
      * Specify Model class name
      *
@@ -31,10 +22,10 @@ class QuestionRepositoryEloquent extends EloquentRepository implements QuestionR
      */
     public function model()
     {
-        return Question::class;
+        return Chat::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -43,5 +34,5 @@ class QuestionRepositoryEloquent extends EloquentRepository implements QuestionR
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }

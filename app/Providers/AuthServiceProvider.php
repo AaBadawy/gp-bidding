@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Entities\Auction;
 use App\Entities\Bidding;
 use App\Entities\Vendor;
+use App\Policies\AuctionPolicy;
 use App\Policies\BidingPolicy;
 use App\Policies\VendorPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -19,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
             Vendor::class => VendorPolicy::class,
-            Bidding::class => BidingPolicy::class
+            Bidding::class => BidingPolicy::class,
+            Auction::class => AuctionPolicy::class,
     ];
 
     /**

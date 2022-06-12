@@ -4,7 +4,6 @@
     <link href="{{asset('plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
 @endpush
 
-
 @section('content')
     <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
         <div class="container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -21,7 +20,7 @@
                 <div class="d-flex align-items-baseline flex-wrap mr-5">
                     <!--begin::Page Title-->
                     <h5 class=" text-dark font-weight-bold my-1 mr-5 ml-2">
-                        {{ __('main.show') }} {{ __('main.product') }} </h5>
+                        {{ __('main.show') }} {{ __('main.users') }} </h5>
                     <!--end::Page Title-->
 
                     <!--begin::Breadcrumb-->

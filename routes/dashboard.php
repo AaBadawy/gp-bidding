@@ -33,7 +33,13 @@ Route::get('/questions','QuestionsController@dataTable')->name('questions.index'
 Route::resource('/orders','OrdersController')->except(['index']);
 Route::get('orders', 'OrdersController@dataTable')->name('orders.index');
 
-//Route::resource('users/{user_type}/','UserController')->except('index');
+Route::resource('users/{user_type}/','UserController')->parameter("","user")->names([
+    'edit'=>    'users.edit',
+    'destroy'=>    'users.destroy',
+    'show'=>    'users.show',
+])->except('index');
+Route::get("users/{user_type}","UserController@dataTable")->name('users.index');
 Route::put('/users/{user_type}/{user}','UserActivationController')->name('users.activation');
 Route::get('/users/{user_type}/{user}','UserController@show')->name('users.show');
 Route::get("/bids","BiddingsController@datatable")->name("bids.index");
+Route::get("chats","ChatPageController")->name("my-chats");
