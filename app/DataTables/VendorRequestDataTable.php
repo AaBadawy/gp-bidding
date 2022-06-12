@@ -23,8 +23,10 @@ class VendorRequestDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('approve',function (VendorRequest $model) {
-                if($model->vendor()->exists())
-                    return ;
+                if($model->vendor()->exists()) {
+                    $url = route('dashboard.vendors.show',['vendor' => $model->vendor()->value('id')]);
+                    return "<a href='$url' class='btn btn-outline-primary'>show</a>";
+                }
                 $url = route('dashboard.vendors.create',['request_id' => $model->id,'owner' => $model->toArray()]);
                 return "<a href='$url' class='btn btn-outline-success'>Create Vendor</a>";
             })
