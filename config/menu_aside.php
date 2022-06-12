@@ -87,7 +87,7 @@ return [
             'submenu' => [
                 [
                     'title' => 'All Requests',
-                    'page' => 'vendor-requests'
+                    'page' => 'dashboard/vendor-requests'
                 ],
             ]
         ],

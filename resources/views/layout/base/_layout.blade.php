@@ -9,7 +9,8 @@
     <div class="d-flex flex-column flex-root">
         <div class="d-flex flex-row flex-column-fluid page">
 
-            @if(config('layout.aside.self.display'))
+
+            @if(config('layout.aside.self.display') && ! isset($stopDisplaySide))
                 @include('layout.base._aside')
             @endif
 

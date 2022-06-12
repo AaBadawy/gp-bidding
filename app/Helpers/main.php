@@ -103,6 +103,9 @@ if(! function_exists('notification_url')) {
 
         $glow = \Illuminate\Support\Str::of($notification->data['model'])->plural()->lower();
         $params = [];
+        if($notification->data['model'] != 'auction') {
+            return route("dashboard.my-chats", ['directTo' => $notification->data['id']]);
+        }
         if(array_key_exists('id',$notification->data)) {
             $params[(string) $glow->singular()] = $notification->data['id'];
             $glow .= '.show';

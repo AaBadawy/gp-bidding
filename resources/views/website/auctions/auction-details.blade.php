@@ -8,13 +8,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="#0">Pages</a>
-                </li>
-                <li>
-                    <span>Vehicles</span>
+                    <a href="{{route('website.main')}}">Home</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +24,10 @@
                 <div class="col-lg-8">
                     <div class="product-details-content">
                         <div class="product-details-header">
-                            <h2 class="title">{{$auction->name}}</h2>
+                            <h2 class="title">{{$auction->name}}
+                                <a href="{{route('website.profile.my-chats',['directTo' => $auction->vendor->owner()->value('id')])}}" class="btn btn-outline-dark text-right text-hover-info btn-sm">contact owner</a></h2>
+                            <div class="col-lg-3">
+                            </div>
                             <ul>
                                 <li>Auction ID #: {{$auction->id}}</li>
                                 <li>products' IDS #: {{$auction->products->implode("id","-")}}</li>

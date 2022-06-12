@@ -59,6 +59,9 @@
                             <a href="{{route("website.profile.my-watching-list")}}" @class(['active' => $activating == 'watching'])><i class="flaticon-star"></i>Watching Bids</a>
                         </li>
                         <li>
+                            <a href="{{route("website.profile.my-chats")}}" @class(['active' => $activating == 'chat'])><i class="flaticon-arrows"></i>My Messages</a>
+                        </li>
+                        <li>
                             <a href="{{route("logout")}}"><i class="flaticon-logout"></i>Logout</a>
                         </li>
                     </ul>

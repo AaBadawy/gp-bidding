@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Chats;
 
 use App\Entities\Chat;
+use App\Events\ChatMessageSent;
 use App\Models\User;
+use App\Notifications\MessageSentTouser;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -17,8 +19,21 @@ class PrivateChat extends Component
 
     protected $listeners = ['chatWith-changed' => 'setChatWith'];
 
+    protected function getListeners()
+    {
+        $listeners =  [
+            'chatWith-changed' => 'setChatWith',
+        ];
+            $listeners["echo:chatting.from.{$this->chatWith?->id},ChatMessageSent"] = '$refresh';
+            $listeners["echo:chatting.to.{$this->chatWith?->id},ChatMessageSent"] = '$refresh';
+        return $listeners;
+    }
+
     public function mount()
     {
+        $this->getLastChatter();
+
+        $this->getChatMessages();
 
     }
 
@@ -35,7 +50,7 @@ class PrivateChat extends Component
     {
         if($this->chatWith instanceof User)
             return $this->chatWith;
-        $this->chatWith = auth()->user()->chatters()->orderByPivot("created_at","desc")->limit(1)->first();
+        $this->chatWith = Chat::query()->whereIn("from_id",[auth()->id(),$this?->chatWith?->id])->whereIn("to_id",[auth()->id(),$this->chatWith?->id])->with(['from','to'])->orderBy("created_at")->first();
     }
 
     public function getChatMessages()
@@ -48,12 +63,14 @@ class PrivateChat extends Component
     public function send()
     {
         if(! empty($this->body)) {
-            Chat::query()->create([
+            $chat = Chat::query()->create([
                 'from_id' => auth()->id(),
                 'to_id' => $this->chatWith->id,
                 'body' => $this->body,
             ]);
             $this->body = '';
+            event(new ChatMessageSent($chat));
+            $this->chatWith->notify(new MessageSentTouser(auth()->user()));
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Chats;
 
+use App\Entities\Chat;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -15,7 +16,10 @@ class MyClients extends Component
     public function mount()
     {
         if(auth()->user()->chatters()->exists())
-            $this->clients = auth()->user()->chatters()->limit(10)->select("users.*")->distinct()->get()->unique();
+            $this->clients = User::query()
+                ->whereIn("id",Chat::query()->where("from_id",auth()->id())->select('to_id'))
+                ->orWhereIn("id",Chat::query()->where("to_id",auth()->id())->select('from_id'))
+                ->limit(10)->select("users.*")->distinct()->get();
         else
             $this->clients = User::query()->limit(10)->where("type",'client')->inRandomOrder()->get();
     }

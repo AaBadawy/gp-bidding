@@ -22,3 +22,9 @@ Broadcast::channel("auctions.{auctionId}",function ($auctionId) { return \App\En
 Broadcast::channel("notification-toggled",function ($user) {
     return true;
 });
+Broadcast::channel('chatting.from.{from_id}',function ($from_id) {
+    return true;
+});
+Broadcast::channel('chatting.to.{to_id}',function ($to_id) {
+    return true;
+});
