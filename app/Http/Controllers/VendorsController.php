@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\VendorDataTable;
+use App\Entities\VendorRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -87,6 +88,8 @@ class VendorsController extends Controller
             $owner = $request->validated()['owner'];
             $owner['is_owner'] = 1;
             $vendor->owner()->create($owner);
+            if($request->has('request_id'))
+                VendorRequest::query()->find($request->input('request_id'))->update(['vendor_id' => $vendor->id]);
             $response = [
                 'message' => 'Vendor created.',
                 'data'    => $vendor->toArray(),

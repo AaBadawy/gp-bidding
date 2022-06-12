@@ -81,4 +81,9 @@ class Vendor extends Model implements Transformable
     {
         return $this->belongsToMany(User::class,'blocks','vendor_id','blocked_id');
     }
+
+    public function request()
+    {
+        return $this->hasOne(VendorRequest::class,'vendor_id','id');
+    }
 }

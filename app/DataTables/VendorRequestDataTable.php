@@ -22,7 +22,13 @@ class VendorRequestDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'vendorrequestdatatable.action');
+            ->addColumn('approve',function (VendorRequest $model) {
+                if($model->vendor()->exists())
+                    return ;
+                $url = route('dashboard.vendors.create',['request_id' => $model->id,'owner' => $model->toArray()]);
+                return "<a href='$url' class='btn btn-outline-success'>Create Vendor</a>";
+            })
+            ->addColumn('action', 'vendorrequestdatatable.action')->rawColumns(['approve']);
     }
 
     /**
@@ -65,6 +71,7 @@ class VendorRequestDataTable extends DataTable
             Column::make('email'),
             Column::make('mobile'),
             Column::make('note'),
+            Column::make('approve'),
             Column::make('created_at'),
         ];
     }

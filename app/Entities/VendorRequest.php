@@ -33,4 +33,9 @@ class VendorRequest extends Model
     {
         return $this->belongsTo(User::class,'requester_id');
     }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class,'vendor_id');
+    }
 }

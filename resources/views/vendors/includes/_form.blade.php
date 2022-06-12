@@ -33,10 +33,10 @@
         <h3>Owner Details</h3>
     </div>
 
-    <x-name-field :action="$action" name="{{$action === 'edit' ? $vendor->owner->user->name : old('owner[name]')}}" :filedName="'owner[name]'"/>
+    <x-name-field :action="$action" name="{{$action === 'edit' ? $vendor->owner->user->name : (old('owner[name]') ?: request()->input('owner.name'))}}" :filedName="'owner[name]'"/>
     <div class="form-group">
         <label for="exampleInputEmail1">Email address <span class="text-danger"> * </span></label>
-        <input type="email" class="form-control" name="owner[email]" placeholder="Enter email" value="{{$action === 'edit'? $vendor->owner->user->email : old('owner[email]')}}">
+        <input type="email" class="form-control" name="owner[email]" placeholder="Enter email" value="{{$action === 'edit'? $vendor->owner->user->email : (old('owner[email]') ?: request()->input('owner.email'))}}">
         @error('owner.email')
             <small class="form-text text-danger">{{$message}}</small>
         @enderror
@@ -48,6 +48,9 @@
             <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>
+    @if($action == 'create' && request()->has("request_id"))
+        <input type="hidden" name="request_id" value="{{request()->input('request_id')}}">
+    @endif
     <div class="form-group">
         <label for="exampleInputPassword1">Password Confirmation<span class="text-danger"> * </span></label>
         <input type="password" class="form-control" name="owner[password_confirmation]" placeholder="Password">
