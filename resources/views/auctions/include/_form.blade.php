@@ -79,10 +79,21 @@
             </div>
 
             @error("end_at")
-            <p class="text-danger font-weight-bold my-3">{{$message}}</p>
+{{--            <p class="text-danger font-weight-bold my-3">{{$message}}</p>--}}
             @enderror
         </div>
     </div>
+    <div class="form-group">
+        <label for="exampleSelect1">Select Category<span class="text-danger">*</span></label>
+        <select class="form-control" id="exampleSelect1" name="category_id">
+            @foreach(\App\Entities\Category::limit(10)->get() as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    @error("category_id")
+        <p class="text-danger font-weight-bold my-3">{{$category}}</p>
+    @enderror
 
     <div class="form-group row">
     </div>

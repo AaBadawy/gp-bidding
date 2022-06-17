@@ -211,4 +211,9 @@ class Auction extends Model implements Transformable
             return "upcoming";
         return "ended";
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id');
+    }
 }

@@ -36,6 +36,7 @@ class AuctionCreateRequest extends FormRequest
             'bidding_price'         => ['required', 'numeric', 'min:1'],
             'product_ids'           => ['required','array'],
             'product_ids.*'         => ['required', Rule::exists('products','id')],
+            'category_id'           => ['required',Rule::exists('categories','id')],
         ];
     }
 
