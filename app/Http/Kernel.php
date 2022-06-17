@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\ResponseJson;
 use App\Http\Middleware\UserAuthorityByType;
+use App\Http\Middleware\UserIsActive;
+use App\Http\Middleware\VendorIsActive;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -39,6 +41,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            UserIsActive::class,
+            VendorIsActive::class,
         ],
 
         'api' => [

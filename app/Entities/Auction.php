@@ -67,6 +67,11 @@ class Auction extends Model implements Transformable
         return $this->belongsToMany(User::class,'biddings',"auction_id",'client_id')->select("users.*")->distinct();
     }
 
+    public function involvedBiders()
+    {
+        return $this->belongsToMany(User::class,'biddings','auction_id','client_id')->groupBy("users.id");
+    }
+
     public function lastBidding()
     {
         return $this->hasOne(Bidding::class)->latestOfMany();
@@ -184,5 +189,26 @@ class Auction extends Model implements Transformable
     public function notStarted()
     {
         return now()->lessThan($this->start_at);
+    }
+
+    public function ended()
+    {
+        return now()->greaterThanOrEqualTo($this->end_at);
+    }
+
+    public function upcoming()
+    {
+        return now()->lessThan($this->start_at);
+    }
+
+    public function status():string
+    {
+        if($this->stillRunning())
+            return "running";
+        if($this->notStarted())
+            return "not started";
+        if($this->upcoming())
+            return "upcoming";
+        return "ended";
     }
 }

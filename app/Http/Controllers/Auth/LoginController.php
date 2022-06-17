@@ -23,6 +23,11 @@ class LoginController extends Controller
         if(! Auth::attempt($credential))
             return redirect()->back()->withErrors(['credential' => 'invalid email or password']);
 
+        if (! \auth()->user()->isActive()) {
+            \auth()->logout();
+            abort(403, 'You Are Not Active anymore');
+        }
+
         return redirect()->intended();
     }
 }

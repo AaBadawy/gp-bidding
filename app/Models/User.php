@@ -10,18 +10,22 @@ use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\SocialAccount;
 
 /**
  * Class User
  * @package App\Models
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens , HasFactory, Notifiable,HasRoles,UserType;
+    use HasApiTokens , HasFactory, Notifiable,HasRoles,UserType,InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -137,5 +141,25 @@ class User extends Authenticatable
 //                return $query->whereHas('auctions', fn($q) => $q->)
 //            });
         return $builder;
+    }
+
+    public function receivedMessages():HasMany
+    {
+        return $this->hasMany(Chat::class,'to_id','id');
+    }
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Chat::class,'from_id','id');
+    }
+
+    public function isActive()
+    {
+        return $this->status == 'active';
+    }
+
+
+    public function socialAccounts(){
+        return $this->hasMany(SocialAccount::class);
     }
 }

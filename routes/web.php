@@ -21,6 +21,9 @@ Route::middleware("guest")
     Route::get("/register","Auth\RegisterController@registerView")->name("register");
     Route::post("/register","Auth\RegisterController@register")->name("submit.register");
     Route::post('/login', 'Auth\LoginController@login')->name('submit.login');
+
+    Route::get('social-auth/google/callback','Auth\GoogleLoginController@providerCallback');
+    Route::get('social-auth/google','Auth\GoogleLoginController@redirectToGoogle')->name('social.redirect');
 });
 
 Route::middleware("auth")->get("/logout",'Auth\LogoutController')->name('logout');

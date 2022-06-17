@@ -1,4 +1,4 @@
-@extends("layout.default",['stopDisplaySide' => true])
+@extends("layout.default",['stopDisplaySide' => true,'stopDisplayHeader' => true])
 
 @section("content")
     <!--begin::Entry-->

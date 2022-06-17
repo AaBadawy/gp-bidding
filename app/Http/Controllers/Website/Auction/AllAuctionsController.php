@@ -15,8 +15,9 @@ class AllAuctionsController extends Controller
 
     public function __invoke()
     {
-//        dd(request()->all());
-        $auctions  = $this->auctionRepository->spatie()->orderBy('start_at')->paginate(request()->per_page);
+        $auctions  = $this->auctionRepository->spatie()->scopeQuery(function ($q) {
+            return $q->orderBy('start_at');
+        })->paginate(request()->per_page);
 
         return view("website.auctions.index",compact('auctions'));
     }

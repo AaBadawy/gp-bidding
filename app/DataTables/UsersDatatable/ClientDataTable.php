@@ -2,6 +2,7 @@
 
 namespace App\DataTables\UsersDatatable;
 use App\Http\Livewire\BlockClient;
+use App\Http\Livewire\Dashboard\InactivateUser;
 use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Livewire;
@@ -36,7 +37,12 @@ class ClientDataTable extends DataTable
                     ]);
                 return Livewire::mount(BlockClient::class,['client' => $model])->html();
             })
-            ->rawColumns(['actions','type','created_at']);
+            ->addColumn('activate',function ($model) {
+                if(auth()->user()->isAdmin())
+                    return Livewire::mount(InactivateUser::class,['user' => $model])->html();
+                return ;
+            })
+            ->rawColumns(['actions','type','created_at','activate']);
     }
 
     /**
@@ -75,7 +81,7 @@ class ClientDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns = [
             Column::make('id'),
             Column::make('name')->title('Client name'),
             Column::make('email')->title('Client email'),
@@ -86,5 +92,8 @@ class ClientDataTable extends DataTable
                 ->width(60)
                 ->addClass('text-center'),
         ];
+        if(auth()->user()->isAdmin())
+            $columns[] = Column::make('activate');
+        return $columns;
     }
 }

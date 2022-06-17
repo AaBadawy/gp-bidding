@@ -9,7 +9,7 @@
         @else
             <div class="card-body pt-4">
                 <!--begin::Toolbar-->
-                <h4 class="m-3 text-muted">Last bidder</h4>
+                <h4 @class(['m-3', 'text-muted' => ! $isWinner,'text-dark font-weigh-bold' => $isWinner])>{{$isWinner ? 'The Winner' : 'Last bidder'}} <i @class(['fas fa-star text-warning' => $isWinner])></i></h4>
                 <hr>
                 <!--end::Toolbar-->
                 <!--begin::User-->
@@ -44,7 +44,7 @@
         @endif
         <!--end::Body-->
     </div>
-    @if(auth()->user()->isAdmin())
+    @if(auth()->user()->isAdmin() && $auction?->vendor?->owner()->exists())
         <div class="card card-custom gutter-b">
             <div class="card-body pt-4">
                 <a href="{{route('dashboard.users.show',['user_type' => 'vendor','user' => $auction?->vendor->owner->id])}}">see the vendor owner</a>

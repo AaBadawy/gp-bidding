@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -25,7 +26,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $request->merge([
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'type'      => "client",
         ]);
 

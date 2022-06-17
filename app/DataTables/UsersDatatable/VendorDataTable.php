@@ -1,8 +1,10 @@
 <?php
 
 namespace App\DataTables\UsersDatatable;
+use App\Http\Livewire\Dashboard\InactivateUser;
 use App\Models\User;
 use Carbon\Carbon;
+use Livewire\Livewire;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -38,7 +40,11 @@ class VendorDataTable extends DataTable
                     'model' => $model
                 ]);
             })
-            ->rawColumns(['actions','parent.name','type','created_at']);
+            ->addColumn('activate',function ($model) {
+              if(auth()->user()->isAdmin())
+                  return Livewire::mount(InactivateUser::class,['user' => $model])->html();
+            })
+            ->rawColumns(['actions','parent.name','type','created_at','activate']);
     }
 
     /**
@@ -64,7 +70,7 @@ class VendorDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns =  [
             Column::make('id'),
             Column::make('name')->title('employee name'),
             Column::make('vendor.name')->title('vendor name'),
@@ -75,6 +81,9 @@ class VendorDataTable extends DataTable
                 ->width(60)
                 ->addClass('text-center'),
         ];
+        if(auth()->user()->isAdmin())
+            $columns[] = Column::make('activate');
+        return $columns;
     }
 
     /**

@@ -81,7 +81,7 @@ return [
         [
             'title' => 'vendor-requests',
             'desc' => '',
-            'icon' => 'media/svg/icons/Tools/Angle Grinder.svg',
+            'icon' => 'media/svg/icons/Navigation/Double-check.svg',
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
@@ -89,6 +89,54 @@ return [
                     'title' => 'All Requests',
                     'page' => 'dashboard/vendor-requests'
                 ],
+            ]
+        ],
+        [
+            'title' => 'vendors',
+            'desc' => '',
+            'icon' => 'media/svg/icons/Navigation/Route.svg',
+            'root'  => true,
+            'submenu' => [
+                [
+                    'title' => 'All Vendors',
+                    'page'  => 'dashboard/vendors'
+                ],
+                [
+                    'title' => 'create vendor',
+                    'page'  => 'dashboard/vendors/create'
+                ]
+            ]
+        ],
+        [
+            'title' => 'categories',
+            'desc' => '',
+            'icon' => 'media/svg/icons/Tools/Angle Grinder.svg',
+            'root'  => true,
+            'submenu' => [
+                [
+                    'title' => 'All Categories',
+                    'page'  => 'dashboard/categories'
+                ],
+                [
+                    'title' => 'create Category',
+                    'page'  => 'dashboard/categories/create'
+                ]
+            ]
+        ],
+        [
+            'title' => 'locations',
+            'desc' => '',
+            'icon' => 'media/svg/icons/Map/Compass.svg',
+            'root'  => true,
+            'submenu' => [
+                [
+                    'title' => 'All Locations',
+                    'page'  => 'dashboard/locations'
+                ],
+                [
+                    'title' => 'create Locations',
+                    'page'  => 'dashboard/locations/create'
+                ]
             ]
         ],
 

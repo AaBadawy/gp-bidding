@@ -11,10 +11,7 @@
                     </div>
                     <ul class="login-with">
                         <li>
-                            <a href="#0"><i class="fab fa-facebook"></i>Log in with Facebook</a>
-                        </li>
-                        <li>
-                            <a href="#0"><i class="fab fa-google-plus"></i>Log in with Google</a>
+                            <a href="{{route('social.redirect')}}"><i class="fab fa-google-plus"></i>Log in with Google</a>
                         </li>
                     </ul>
                     <div class="or">
@@ -58,7 +55,7 @@
                     <div class="section-header mb-0">
                         <h3 class="title mt-0">NEW HERE?</h3>
                         <p>Sign up and create your Account</p>
-                        <a href="sign-up.html" class="custom-button transparent">Sign Up</a>
+                        <a href="{{route('register')}}" class="custom-button transparent">Sign Up</a>
                     </div>
                 </div>
             </div>

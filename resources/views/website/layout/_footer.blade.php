@@ -166,7 +166,7 @@
             <div class="copyright-area">
                 <div class="footer-bottom-wrapper">
                     <div class="logo">
-                        <a href="index.html"><img src="{{asset_website("images/logo/footer-logo.png")}}" alt="logo"></a>
+                        <a href="{{route('website.main')}}"><img src="{{asset_website("images/gp-logo.png")}}" alt="logo" style="width: 15%"></a>
                     </div>
                     <ul class="gateway-area">
                         <li>

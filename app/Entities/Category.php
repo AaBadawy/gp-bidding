@@ -28,4 +28,8 @@ class Category extends Model implements HasMedia
         "parent_id",
     ];
 
+    public function auctions()
+    {
+        return $this->hasMany(Auction::class,'category_id');
+    }
 }

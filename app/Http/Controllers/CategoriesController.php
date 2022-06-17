@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CategoryDatatable;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +11,6 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\Contracts\CategoryRepository;
-use App\Validators\CategoryValidator;
 
 /**
  * Class CategoriesController.
@@ -25,20 +25,18 @@ class CategoriesController extends Controller
     protected $repository;
 
     /**
-     * @var CategoryValidator
-     */
-    protected $validator;
-
-    /**
      * CategoriesController constructor.
      *
      * @param CategoryRepository $repository
-     * @param CategoryValidator $validator
      */
-    public function __construct(CategoryRepository $repository, CategoryValidator $validator)
+    public function __construct(CategoryRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+    }
+
+    public function dataTable(CategoryDatatable $datatable)
+    {
+        return $datatable->render("categories.index");
     }
 
     /**
@@ -61,6 +59,10 @@ class CategoriesController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    public function create()
+    {
+        return view('categories.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -73,10 +75,9 @@ class CategoriesController extends Controller
     public function store(CategoryCreateRequest $request)
     {
         try {
+            $category = $this->repository->create($request->validated());
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $category = $this->repository->create($request->all());
+            $category->addMediaFromRequest('image')->toMediaCollection('category');
 
             $response = [
                 'message' => 'Category created.',
@@ -149,10 +150,10 @@ class CategoriesController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
             $category = $this->repository->update($request->all(), $id);
+
+            if($request->filled('image'))
+                $category->addMediaFromRequest('image')->toMediaCollection('category');
 
             $response = [
                 'message' => 'Category updated.',

@@ -15,6 +15,10 @@ use App\Entities\Auction;
  */
 class AuctionRepositoryEloquent extends EloquentRepository implements AuctionRepository
 {
+    protected $allowedFilters = [
+        'name'
+    ];
+
     protected $allowedFiltersExact = [
         'winner_id',
         'vendor_id',
@@ -30,14 +34,4 @@ class AuctionRepositoryEloquent extends EloquentRepository implements AuctionRep
     {
         return Auction::class;
     }
-
-
-    /**
-     * Boot up the repository, pushing criteria
-     */
-    public function boot()
-    {
-        $this->pushCriteria(app(RequestCriteria::class));
-    }
-
 }

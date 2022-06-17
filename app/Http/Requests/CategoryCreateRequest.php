@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryCreateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class CategoryCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'      => ['required','string',Rule::unique('categories','name')],
+            'image'     => ['required','image']
         ];
     }
 }

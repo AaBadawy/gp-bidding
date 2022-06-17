@@ -6,11 +6,11 @@
             <!--begin::Aside Mobile Toggle-->
             <!--end::Aside Mobile Toggle-->
             <!--begin::Dropdown Menu-->
-            <div class="dropdown dropdown-inline">
-                <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md m-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+{{--            <div class="dropdown dropdown-inline">--}}
+                <a href="{{url()->previous()}}" type="button" class="btn btn-outline-info">
                     Go Back
-                </button>
-            </div>
+                </a>
+{{--            </div>--}}
             <!--end::Dropdown Menu-->
         </div>
         <div class="text-center flex-grow-1">

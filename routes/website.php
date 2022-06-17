@@ -23,4 +23,5 @@ Route::middleware("auth:web")->namespace("Profile")->name("profile.")->group(fun
     Route::get("/watching-list","MyFavouriteAuctionsAuctionsController")->name("my-watching-list");
     Route::get("/my-dashboard","MyDashboardController")->name("my-dashboard");
     Route::get("/my-chats","MyChatsController")->name("my-chats");
+    Route::get("/my-notifications","MyNotificationsController")->name('my-notifications');
 });

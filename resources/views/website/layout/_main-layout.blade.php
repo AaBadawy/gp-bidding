@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Sbidu - Bid And Auction HTML Template</title>
+    <title>{{ config('app.name') }}</title>
 
     @include("website.layout.include.css")
 
@@ -14,7 +14,7 @@
 
     @livewireStyles
 
-    <link rel="shortcut icon" href="{{asset_website("images/favicon.png")}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset_website("images/gp-logo.png")}}" type="image/x-icon">
     <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 

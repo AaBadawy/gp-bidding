@@ -28,6 +28,6 @@ class SelectProduct extends Component
 
         $this->products = Product::query()->where("vendor_id",$vendor_id)
 //            ->doesntHave("auctions")
-            ->limit(6)->get();
+            ->limit(50)->get();
     }
 }

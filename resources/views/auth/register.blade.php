@@ -11,10 +11,7 @@
                     </div>
                     <ul class="login-with">
                         <li>
-                            <a href="#0"><i class="fab fa-facebook"></i>Log in with Facebook</a>
-                        </li>
-                        <li>
-                            <a href="#0"><i class="fab fa-google-plus"></i>Log in with Google</a>
+                            <a href="{{route('social.redirect')}}"><i class="fab fa-google-plus"></i>Log in with Google</a>
                         </li>
                     </ul>
                     <div class="or">

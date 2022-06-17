@@ -25,7 +25,10 @@
                     <div class="product-details-content">
                         <div class="product-details-header">
                             <h2 class="title">{{$auction->name}}
-                                <a href="{{route('website.profile.my-chats',['directTo' => $auction->vendor->owner()->value('id')])}}" class="btn btn-outline-dark text-right text-hover-info btn-sm">contact owner</a></h2>
+                                @if($auction->vendor?->owner()->exists())
+                                    <a href="{{route('website.profile.my-chats',['directTo' => $auction->vendor->owner()->value('id')])}}" class="btn btn-outline-dark text-right text-hover-info btn-sm">contact owner</a>
+                                @endif
+                            </h2>
                             <div class="col-lg-3">
                             </div>
                             <ul>

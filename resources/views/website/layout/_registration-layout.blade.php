@@ -5,7 +5,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li>
-                    <a href="./index.html">Home</a>
+                    <a href="{{route('website.main')}}">Home</a>
                 </li>
                 <li>
                     <a href="#0">Pages</a>

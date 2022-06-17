@@ -27,13 +27,7 @@
             <div class="col-sm-10 col-md-7 col-lg-4">
                 <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                     <div class="user">
-                        <div class="thumb-area">
-                            <div class="thumb">
-                                <img src="{{asset_website("images/dashboard/user.png")}}" alt="user">
-                            </div>
-                            <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
-                            <input type="file" id="profile-pic" class="d-none">
-                        </div>
+                        <livewire:website.profile.save-profile-image />
                         <div class="content">
                             <h5 class="title"><a href="#0">{{auth()->user()->name}}</a></h5>
                             <span class="username">{{auth()->user()->email}}</span>
@@ -53,7 +47,7 @@
                             <a href="winning-bids.html @class([ 'active' => $activating == 'winning-bids'])"><i class="flaticon-best-seller"></i>Winning Bids</a>
                         </li>
                         <li>
-                            <a href="notifications.html" @class(['active' => $activating == 'notification'])><i class="flaticon-alarm"></i>My Alerts</a>
+                            <a href="{{route('website.profile.my-notifications')}}" @class(['active' => $activating == 'notification'])><i class="flaticon-alarm"></i>My Alerts</a>
                         </li>
                         <li>
                             <a href="{{route("website.profile.my-watching-list")}}" @class(['active' => $activating == 'watching'])><i class="flaticon-star"></i>Watching Bids</a>

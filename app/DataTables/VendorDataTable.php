@@ -3,7 +3,9 @@
 namespace App\DataTables;
 
 use App\Entities\Vendor;
+use App\Http\Livewire\Dashboard\InactivateUser;
 use Carbon\Carbon;
+use Livewire\Livewire;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -32,7 +34,11 @@ class VendorDataTable extends DataTable
                     'model'     => $model,
                 ]);
             })
-            ->rawColumns(['actions', 'created_at']);
+            ->addColumn('activate',function ($model) {
+                if(auth()->user()->isAdmin())
+                    return Livewire::mount(InactivateUser::class,['user' => $model])->html();
+            })
+            ->rawColumns(['actions', 'created_at','activate']);
     }
 
     /**
@@ -60,7 +66,7 @@ class VendorDataTable extends DataTable
                     ->dom("<'row'<'col-3' l><'col-6 text-right' B><'col-3' f>>
                                 <'row'<'col-12' tr>>
                                 <'row'<'col-5'i><'col-7 dataTables_pager'p>>")
-                    ->orderBy(1);
+                    ->orderBy(1)->drawCallbackWithLivewire();
     }
 
     /**
@@ -70,12 +76,15 @@ class VendorDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns =  [
             Column::make('id'),
             Column::make('name'),
             Column::make('created_at'),
             Column::computed('actions'),
         ];
+        if(auth()->user()->isAdmin())
+            $columns[] = Column::make('activate');
+        return $columns;
     }
 
     /**

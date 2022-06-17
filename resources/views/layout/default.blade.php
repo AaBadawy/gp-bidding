@@ -16,14 +16,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta charset="utf-8"/>
 
         {{-- Title Section --}}
-{{--        <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>--}}
+        <title>{{ config('app.name') }}</title>
 
         {{-- Meta Data --}}
         <meta name="description" content="@yield('page_description', $page_description ?? '')"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
         {{-- Favicon --}}
-        <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('media/gp-logo.png') }}" />
 
         {{-- Fonts --}}
         {{ \App\Classes\Theme\Metronic::getGoogleFontsInclude() }}

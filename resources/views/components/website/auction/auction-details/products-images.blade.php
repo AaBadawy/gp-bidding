@@ -4,7 +4,7 @@
             @foreach($products as $product)
                 <div class="slide-top-item">
                     <div class="slide-inner">
-                        <img src="{{$product->getFirstMediaUrl("main_image")}}" style ="width: 1110px; height: 585px;" alt="product">
+                        <img src="{{$product->getFirstMediaUrl("main_image")}}" style ="width: 1110px; object-fit: none;height: 585px;" alt="product">
                     </div>
                 </div>
             @endforeach

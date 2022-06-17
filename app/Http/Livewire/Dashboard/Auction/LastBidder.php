@@ -13,6 +13,8 @@ class LastBidder extends Component
 
     public null|User $lastBidder = null;
 
+    public bool $isWinner = false;
+
     protected function getListeners()
     {
         return [
@@ -33,6 +35,9 @@ class LastBidder extends Component
     public function getLastBidder()
     {
         $this->lastBidder = $this->auction?->lastBiding?->client;
+
+        if($this->auction->winner()->exists())
+            $this->isWinner = true;
     }
 
     public function block()

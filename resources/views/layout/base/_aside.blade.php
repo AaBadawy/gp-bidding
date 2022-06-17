@@ -16,7 +16,7 @@
     <div class="brand flex-column-auto {{ \App\Classes\Theme\Metronic::printClasses('brand', false) }}" id="kt_brand">
         <div class="brand-logo">
             <a href="{{ url('/') }}">
-                <img alt="{{ config('app.name') }}" src="{{ asset('media/logos/'.$kt_logo_image) }}"/>
+                <img alt="{{ config('app.name') }}" src="{{ asset('media/gp-logo.png') }}" style="width: 100%;height: 80%"/>
             </a>
         </div>
 

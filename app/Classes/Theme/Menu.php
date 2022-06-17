@@ -75,6 +75,9 @@ class Menu
             } else {
                 $url = '#';
 
+                if(isset($item['types']) && ! in_array(auth()->user()->status,$item['types']))
+                    return ;
+
                 if (isset($item['page'])) {
                     $url = url($item['page']);
                 }
@@ -281,6 +284,10 @@ class Menu
                 if (isset($item['heading']) == false) {
                     $url = '#';
 
+                    if(isset($item['types'])){
+                        if(! in_array(auth()->user()->status,$item['types']))
+                            return ;
+                    }
                     if (isset($item['page'])) {
                         $url = url($item['page']);
                     }
