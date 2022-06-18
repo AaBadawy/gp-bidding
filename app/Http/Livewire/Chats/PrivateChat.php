@@ -50,7 +50,7 @@ class PrivateChat extends Component
     {
         if($this->chatWith instanceof User)
             return $this->chatWith;
-        $this->chatWith = Chat::query()->whereIn("from_id",[auth()->id(),$this?->chatWith?->id])->whereIn("to_id",[auth()->id(),$this->chatWith?->id])->with(['from','to'])->orderBy("created_at")->first();
+        $this->chatWith = Chat::query()->whereIn("from_id",[auth()->id(),$this?->chatWith?->id])->whereIn("to_id",[auth()->id(),$this->chatWith?->id])->with(['from','to'])->orderBy("created_at")->first()?->to;
     }
 
     public function getChatMessages()

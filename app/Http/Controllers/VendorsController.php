@@ -87,6 +87,8 @@ class VendorsController extends Controller
             $vendor = $this->repository->create($request->only(['name', 'email', 'website', 'description']));
             $owner = $request->validated()['owner'];
             $owner['is_owner'] = 1;
+            $owner['type'] = 'vendor';
+
             $vendor->owner()->create($owner);
             if($request->has('request_id'))
                 VendorRequest::query()->find($request->input('request_id'))->update(['vendor_id' => $vendor->id]);

@@ -30,6 +30,7 @@ class Notification extends Component
 
         $this->emit('read');
 
-        $this->redirect(notification_url($this->notification,'website.'));
+        if($this->notification->data['title'] == 'notification')
+            $this->redirect(route("website.notifications.display-details",['notification' => $this->notification->data['id']]));
     }
 }

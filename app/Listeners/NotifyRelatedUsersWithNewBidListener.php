@@ -28,7 +28,9 @@ class NotifyRelatedUsersWithNewBidListener
      */
     public function handle(BidCreated $event)
     {
-        $event->auction->vendor->employees->each(fn(User $employee) => $employee->notify(new AuctionHasNewBidNotification($event->auction)));
+        $event->auction->vendor->employees()
+            ->union($event->auction->involvedBiders()->select("users.*"))
+            ->get()->each(fn(User $employee) => $employee->notify(new AuctionHasNewBidNotification($event->auction)));
 //        $event->auction->involvedBiders()->each(fn(User $client) => $client->notify(new AuctionHasNewBidNotification($event->auction)));
     }
 }

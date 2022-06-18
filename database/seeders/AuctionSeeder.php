@@ -17,6 +17,7 @@ class AuctionSeeder extends Seeder
 //        Auction::factory(100)->create();
         Auction::factory(100)
             ->hasProducts(5)
-            ->running()->create();
+//            ->running()
+            ->create();
     }
 }
