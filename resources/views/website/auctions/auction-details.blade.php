@@ -28,6 +28,9 @@
                                 @if($auction->vendor?->owner()->exists())
                                     <a href="{{route('website.profile.my-chats',['directTo' => $auction->vendor->owner()->value('id')])}}" class="btn btn-outline-dark text-right text-hover-info btn-sm">contact owner</a>
                                 @endif
+                                @if(auth()->check())
+                                    <a href="#" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#exampleModal">{{auth()->user()->reviews()->whereBelongsTo($auction,'auction')->doesntExist() ? "submit review" : "update Review"}}</a>
+                                @endif
                             </h2>
                             <div class="col-lg-3">
                             </div>
@@ -111,6 +114,15 @@
     </section>
     <!--============= Product Details Section Ends Here =============-->
 
+        <livewire:website.review-modal :auction="$auction"/>
+
     @push("js")
+        <script>
+            $(function() {
+                Livewire.on('closeModal', () => {
+                    $('#exampleModal').modal('toggle');
+                });
+            });
+        </script>
     @endpush
 @endsection

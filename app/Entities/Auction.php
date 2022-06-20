@@ -116,7 +116,8 @@ class Auction extends Model implements Transformable
     {
         return $builder
             ->doesntHave("winner")
-            ->where("end_at","<=", today()->format("Y-m-d H:i"))
+            ->whereDate("end_at",'<=',now())
+            ->whereTime('end_at','<=',now())
             ->has("lastBidding");
     }
 

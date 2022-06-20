@@ -85,6 +85,7 @@ class ClientDataTable extends DataTable
             Column::make('id'),
             Column::make('name')->title('Client name'),
             Column::make('email')->title('Client email'),
+            Column::make('id_number')->title('Client national id'),
             Column::make('created_at'),
             Column::computed('actions')
                 ->exportable(false)

@@ -47,9 +47,9 @@
 
 @include("website.layout.include.js")
 
-@stack("js")
-
 @livewireScripts
+
+@stack("js")
 
 </body>
 

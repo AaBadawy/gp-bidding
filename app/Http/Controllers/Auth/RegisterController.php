@@ -31,7 +31,7 @@ class RegisterController extends Controller
         ]);
 
 
-        $user = User::create($request->only(['name' , 'email' , 'password']));
+        $user = User::create($request->only(['name' , 'email' , 'password','id_number']));
 
         Auth::login($user);
 

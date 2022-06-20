@@ -21,8 +21,8 @@
                         @csrf
 
                         <div class="form-group mb-30">
-                            <label for="login-email"><i class="far fa-envelope"></i></label>
-                            <input type="text" id="login-email" placeholder="Full Name" name="name">
+                            <label for="login-name"><i class="far fa-envelope"></i></label>
+                            <input type="text" id="login-name" placeholder="Full Name" name="name">
                         </div>
                         @error("name")
                         <div class="mb-3 mt-1 px-5">
@@ -40,6 +40,16 @@
                         </div>
                         @enderror
 
+                        <div class="form-group mb-30">
+                            <label for="id_number"><i class="fa fa-lock"></i></label>
+                            <input type="text" id="id_number" placeholder="Your Id Number" name="id_number">
+                        </div>
+                        @error("id_number")
+                        <div class="mb-3 mt-1 px-5">
+                            <p class="text-danger font-weight-bold my-3">{{$message}}</p>
+                        </div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="login-pass"><i class="fas fa-lock"></i></label>
                             <input type="password" id="login-pass" placeholder="Password" name="password">
@@ -52,8 +62,8 @@
                         @enderror
 
                         <div class="form-group">
-                            <label for="login-pass"><i class="fas fa-lock"></i></label>
-                            <input type="password" id="login-pass" placeholder="Password Confirmation" name="password_confirmation">
+                            <label for="login-pass-conf"><i class="fas fa-lock"></i></label>
+                            <input type="password" id="login-pass-conf" placeholder="Password Confirmation" name="password_confirmation">
                         </div>
                         <div class="form-group mb-0">
                             <button type="submit" class="custom-button">Register</button>
@@ -62,9 +72,9 @@
                 </div>
                 <div class="right-side cl-white">
                     <div class="section-header mb-0">
-                        <h3 class="title mt-0">NEW HERE?</h3>
-                        <p>Sign up and create your Account</p>
-                        <a href="sign-up.html" class="custom-button transparent">Sign Up</a>
+                        <h3 class="title mt-0">Already Have Account</h3>
+                        <p>Sign in to continue</p>
+                        <a href="{{route('login')}}" class="custom-button transparent">Sign In</a>
                     </div>
                 </div>
             </div>

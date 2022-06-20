@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Entities\Auction;
 use App\Entities\Bidding;
 use App\Entities\Chat;
+use App\Entities\Review;
 use App\Entities\Vendor;
 use App\traits\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -41,7 +42,8 @@ class User extends Authenticatable implements HasMedia
         'vendor_id',
         'is_owner',
         'ml_id',
-        'ml_user_name'
+        'ml_user_name',
+        'id_number'
     ];
 
     /**
@@ -161,5 +163,10 @@ class User extends Authenticatable implements HasMedia
 
     public function socialAccounts(){
         return $this->hasMany(SocialAccount::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class,'reviewer_id');
     }
 }

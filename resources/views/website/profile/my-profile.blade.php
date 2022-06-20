@@ -12,6 +12,12 @@
                 @endphp
                 <livewire:website.profile.update-section :title="'Your Email'" :value="auth()->user()->email" :input="auth()->user()->email" :name="'email'" :validationRules="['name' => ['required','string','unique:users,email,$id']]"/>
             </div>
+            <div class="col-12">
+                @php
+                $id = auth()->id()
+                @endphp
+                <livewire:website.profile.update-section :title="'Your National ID'" :value="(string) auth()->user()->id_number" :input="(string) auth()->user()->id_number" :name="'id_number'" :validationRules="['name' => ['required','string','unique:users,id_number,$id']]"/>
+            </div>
 {{--            <div class="col-12">--}}
 {{--                <div class="dash-pro-item dashboard-widget">--}}
 {{--                    <div class="header">--}}

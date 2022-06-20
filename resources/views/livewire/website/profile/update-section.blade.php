@@ -10,6 +10,11 @@
                 <div class="info-value">
                     <input type="text" class="form-control col-12" wire:model="input" value="{{$value}}">
                 </div>
+                @error('name')
+                    <div class="col-12  ml-5 my-1">
+                        <p class="text-danger font-weight-bold">{{$message}}</p>
+                    </div>
+                @enderror
                 <div class="">
                         <input class="btn btn-primary form-control col-lg-12 mt-2 mr-4"  type="button" value="save" wire:click="save"/>
                 </div>

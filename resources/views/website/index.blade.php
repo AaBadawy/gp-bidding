@@ -95,72 +95,31 @@
         </div>
         <div class="m--15">
             <div class="client-slider owl-theme owl-carousel">
-                <div class="client-item">
-                    <div class="client-content">
-                        <p>I can't stop bidding! It's a great way to spend some time and I want everything on Sbidu.</p>
-                    </div>
-                    <div class="client-author">
-                        <div class="thumb">
-                            <a href="#0">
-                                <img src="{{asset_website("images/client/client01.png")}}" alt="client">
-                            </a>
+                @foreach(\App\Entities\Review::query()->with(['reviewer','auction'])->limit(10)->get() as $review)
+                    <div class="client-item">
+                        <div class="client-content">
+                            <p>{{$review->body}}</p>
                         </div>
-                        <div class="content">
-                            <h6 class="title"><a href="#0">Alexis Moore</a></h6>
-                            <div class="ratings">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
+                        <p class="mx-2 text-success">
+                            Auction : <a href="{{route('website.auction.details',['auction' => $review->auction->id])}}"><span class="text-info">{{$review->auction->name}}</span><span class="fas fa-link"></span></a>
+                        </p>
+                        <div class="client-author">
+                            <div class="thumb">
+                                <a href="#0">
+                                    <img src="{{ !empty($review->reviewer->getFirstMediaUrl("profile_image")) ? $review->reviewer->getFirstMediaUrl("profile_image") : asset_website("images/client/client01.png")}}" alt="client">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h6 class="title"><a href="#0">{{$review->reviewer->name}}</a></h6>
+                                <div class="ratings">
+                                    @foreach(range(0,$review->stars) as $star)
+                                        <span><i class="fas fa-star"></i></span>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="client-item">
-                    <div class="client-content">
-                        <p>I came I saw I won. Love what I have won, and will try to win something else.</p>
-                    </div>
-                    <div class="client-author">
-                        <div class="thumb">
-                            <a href="#0">
-                                <img src="{{asset_website("images/client/client02.png")}}" alt="client">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h6 class="title"><a href="#0">Darin Griffin</a></h6>
-                            <div class="ratings">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="client-item">
-                    <div class="client-content">
-                        <p>This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                    </div>
-                    <div class="client-author">
-                        <div class="thumb">
-                            <a href="#0">
-                                <img src="{{asset_website("images/client/client03.png")}}" alt="client">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h6 class="title"><a href="#0">Tom Powell</a></h6>
-                            <div class="ratings">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
