@@ -105,7 +105,7 @@ eval(" // Class definition\n\nvar KTDualListbox = function () {\n  // Private fu
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/metronic/js/pages/features/miscellaneous/dual-listbox.js */"./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\metronic\js\pages\features\miscellaneous\dual-listbox.js */"./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js");
 
 
 /***/ })

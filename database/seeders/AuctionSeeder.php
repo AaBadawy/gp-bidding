@@ -15,9 +15,9 @@ class AuctionSeeder extends Seeder
     public function run()
     {
 //        Auction::factory(100)->create();
-        Auction::factory(100)
-            ->hasProducts(5)
-//            ->running()
-            ->create();
+//         Auction::factory(100)
+//             ->hasProducts(5)
+// //            ->running()
+//             ->create();
     }
 }
