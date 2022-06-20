@@ -225,7 +225,7 @@ eval("// Draggable - a lightweight, responsive, modern drag & drop library: http
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/plugins/custom/draggable/draggable.js */"./resources/plugins/custom/draggable/draggable.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\plugins\custom\draggable\draggable.js */"./resources/plugins/custom/draggable/draggable.js");
 
 
 /***/ })

@@ -582,7 +582,7 @@ eval(" // Initialization\n\nKTUtil.ready(function () {\n  //////////////////////
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/js/scripts.js */"./resources/js/scripts.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\js\scripts.js */"./resources/js/scripts.js");
 
 
 /***/ })

@@ -90,7 +90,7 @@ class VendorsController extends Controller
             $owner['type'] = 'vendor';
 
             $vendor->owner()->create($owner);
-            if($request->has('request_id'))
+            if($request->filled('request_id'))
                 VendorRequest::query()->find($request->input('request_id'))->update(['vendor_id' => $vendor->id]);
             $response = [
                 'message' => 'Vendor created.',

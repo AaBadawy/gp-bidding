@@ -115,7 +115,7 @@ eval("// CKEditor  - Rock-solid, free WYSIWYG editor with collaborative editing,
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/plugins/custom/ckeditor/ckeditor-inline.js */"./resources/plugins/custom/ckeditor/ckeditor-inline.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\plugins\custom\ckeditor\ckeditor-inline.js */"./resources/plugins/custom/ckeditor/ckeditor-inline.js");
 
 
 /***/ })

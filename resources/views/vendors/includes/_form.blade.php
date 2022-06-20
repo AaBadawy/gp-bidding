@@ -33,7 +33,16 @@
         <h3>Owner Details</h3>
     </div>
 
-    <x-name-field :action="$action" name="{{$action === 'edit' ? $vendor->owner->user->name : (old('owner[name]') ?: request()->input('owner.name'))}}" :filedName="'owner[name]'"/>
+    {{-- <x-name-field :action="$action" name="{{$action === 'edit' ? $vendor->owner->user->name : (old('owner[name]') ?: request()->input('owner.name'))}}" :filedName="'owner[name]'"/> --}}
+        <div  class="form-group">
+            <!-- I begin to speak only when I am certain what I will say is not better left unsaid - Cato the Younger -->
+            <label for="exampleInputEmail1">Name <x-required-star/></label>
+            <input type="text" class="form-control" name="owner[name]" id="ec" placeholder="Enter name" value="{{$action === 'edit'? $vendor->user->name : old('name')}}">
+            @error($filedName ?? 'name')
+            <small class="form-text text-danger">{{$message}}</small>
+            @enderror
+        </div>
+        
     <div class="form-group">
         <label for="exampleInputEmail1">Email address <span class="text-danger"> * </span></label>
         <input type="email" class="form-control" name="owner[email]" placeholder="Enter email" value="{{$action === 'edit'? $vendor->owner->user->email : (old('owner[email]') ?: request()->input('owner.email'))}}">
@@ -48,7 +57,7 @@
             <small class="form-text text-danger">{{$message}}</small>
         @enderror
     </div>
-    @if($action == 'create' && request()->has("request_id"))
+    @if($action == 'create' && request()->filled("request_id"))
         <input type="hidden" name="request_id" value="{{request()->input('request_id')}}">
     @endif
     <div class="form-group">

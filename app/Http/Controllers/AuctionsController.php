@@ -61,7 +61,7 @@ class AuctionsController extends Controller
 
     public function dataTable(AuctionDataTable $dataTable)
     {
-        if(auth()->user()->cannot('index-auction'))
+        if(auth()->user()->isClient())
             abort(403);
         return $dataTable->render('auctions.index');
     }
@@ -114,8 +114,8 @@ class AuctionsController extends Controller
      */
     public function show($id)
     {
-        if(auth()->user()->cannot('show-auction'))
-            abort(403);
+        // if(auth()->user()->cannot('show-auction'))
+        //     abort(403);
 //        $auction = $this->repository->scopeQuery(function (){
 //            return Order::basedOnAuth();
 //        })->find($id);
