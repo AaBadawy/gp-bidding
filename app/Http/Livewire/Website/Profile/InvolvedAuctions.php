@@ -35,11 +35,15 @@ class InvolvedAuctions extends Component
 
     protected function setAuctions()
     {
-        return auth()->user()
+        $builder = auth()->user()
             ->involvedAuctionsDistinct()
-            ->{$this->status}()
             ->withCount("biddings")
-            ->latest()
+            ->latest();
+        if($this->status == 'running')
+            $builder = $builder->doesntHave("winner");
+        else
+            $builder = $builder->has("winner");
+        return $builder
             ->get()
             ->unique();
 //            ->paginate($this->perPage);
