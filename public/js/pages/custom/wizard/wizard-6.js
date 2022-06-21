@@ -116,7 +116,7 @@ eval("/* WEBPACK VAR INJECTION */(function(jQuery) { // Class definition\n\nvar 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\metronic\js\pages\custom\wizard\wizard-6.js */"./resources/metronic/js/pages/custom/wizard/wizard-6.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/metronic/js/pages/custom/wizard/wizard-6.js */"./resources/metronic/js/pages/custom/wizard/wizard-6.js");
 
 
 /***/ })

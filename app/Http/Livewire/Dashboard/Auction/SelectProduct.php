@@ -27,7 +27,7 @@ class SelectProduct extends Component
         $vendor_id = ! is_null($vendor_id) ? $vendor_id : Vendor::query()->has('products')->value("id");
 
         $this->products = Product::query()->where("vendor_id",$vendor_id)
-//            ->doesntHave("auctions")
+            ->doesntHave("auction")
             ->limit(50)->get();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Models\User;
+use App\Repositories\Contracts\AuctionRepository;
 use Database\Factories\AuctionFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -138,10 +139,13 @@ class Auction extends Model implements Transformable
 
     public function scopePopular(Builder $builder)
     {
+        $repo = app(AuctionRepository::class);
         return $builder
             ->withCount(["biddings"])
-            ->orderByDesc("biddings_count")
-            ->running();
+            ->setQuery($repo->spatie()->toBase())
+//            ->orderByDesc("biddings_count")
+            ->whereDate("start_at",">=",now())->limit(3);
+//            ->running();
     }
 
     public function scopeUpcoming(Builder $builder)

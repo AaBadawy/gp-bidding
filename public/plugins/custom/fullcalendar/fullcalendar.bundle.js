@@ -194,7 +194,7 @@ eval("// FullCalendar - Full-sized, drag & drop event calendar in JavaScript: ht
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\plugins\custom\fullcalendar\fullcalendar.js */"./resources/plugins/custom/fullcalendar/fullcalendar.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/plugins/custom/fullcalendar/fullcalendar.js */"./resources/plugins/custom/fullcalendar/fullcalendar.js");
 
 
 /***/ })

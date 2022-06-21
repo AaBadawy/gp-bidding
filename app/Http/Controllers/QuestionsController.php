@@ -37,8 +37,6 @@ class QuestionsController extends Controller
 
     public function dataTable(QuestionDataTable $dataTable)
     {
-        if(auth()->user()->cannot('index-auction'))
-            abort(403);
         return $dataTable->render('questions.index');
     }
     /**

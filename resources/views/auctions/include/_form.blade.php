@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group col-lg-6">
-            <label for="exampleInputPassword1">Bidding Price <span class="text-danger">*</span></label>
+            <label for="exampleInputPassword1">min Bidding Price <span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Biding ber one bid" name="bidding_price" value="{{old_or("bidding_price",$auction)}}"/>
             <span class="form-text text-muted">Keep it relevant with the auction items</span>
 

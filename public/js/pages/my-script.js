@@ -104,7 +104,7 @@ eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\metronic\js\pages\my-script.js */"./resources/metronic/js/pages/my-script.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/metronic/js/pages/my-script.js */"./resources/metronic/js/pages/my-script.js");
 
 
 /***/ })

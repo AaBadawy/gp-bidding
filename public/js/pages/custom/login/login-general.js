@@ -116,7 +116,7 @@ eval("/* WEBPACK VAR INJECTION */(function($, jQuery) { // Class Definition\n\nv
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\metronic\js\pages\custom\login\login-general.js */"./resources/metronic/js/pages/custom/login/login-general.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/metronic/js/pages/custom/login/login-general.js */"./resources/metronic/js/pages/custom/login/login-general.js");
 
 
 /***/ })

@@ -193,7 +193,7 @@ eval("// Flot- Flot is a pure JavaScript plotting library for jQuery, with a foc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\plugins\custom\flot\flot.js */"./resources/plugins/custom/flot/flot.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/plugins/custom/flot/flot.js */"./resources/plugins/custom/flot/flot.js");
 
 
 /***/ })

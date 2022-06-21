@@ -127,7 +127,7 @@ eval("// Gmaps.js - allows you to use the potential of Google Maps in a simple w
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gp-bidding\resources\plugins\custom\gmaps\gmaps.js */"./resources/plugins/custom/gmaps/gmaps.js");
+module.exports = __webpack_require__(/*! /home/badawy/gp/antique-backend-main/resources/plugins/custom/gmaps/gmaps.js */"./resources/plugins/custom/gmaps/gmaps.js");
 
 
 /***/ })
