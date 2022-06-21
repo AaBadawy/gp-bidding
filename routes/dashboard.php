@@ -47,3 +47,5 @@ Route::get("vendor-requests",'VendorRequestsController@dataTable')->name('vendor
 
 Route::resource("categories","CategoriesController")->except('index');
 Route::get("categories","CategoriesController@dataTable")->name('categories.index');
+
+Route::get("reviews","ReviewsController@dataTable")->name("reviews.index");

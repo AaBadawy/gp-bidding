@@ -1,7 +1,7 @@
 
 <div class="card-body">
     <div class="card-header">
-        <h3>Location Details</h3>
+        <h3>Category Details</h3>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Name <span class="text-danger"> * </span></label>

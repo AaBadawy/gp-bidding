@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ReviewDataTable;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,20 +26,18 @@ class ReviewsController extends Controller
     protected $repository;
 
     /**
-     * @var ReviewValidator
-     */
-    protected $validator;
-
-    /**
      * ReviewsController constructor.
      *
      * @param ReviewRepository $repository
-     * @param ReviewValidator $validator
      */
-    public function __construct(ReviewRepository $repository, ReviewValidator $validator)
+    public function __construct(ReviewRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+    }
+
+    public function dataTable(ReviewDataTable $dataTable)
+    {
+        return $dataTable->render("reviews.index");
     }
 
     /**

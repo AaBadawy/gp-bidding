@@ -32,7 +32,7 @@ class ClientDataTable extends DataTable
             ->addColumn('actions', function ($model) {
                 if(auth()->user()->isAdmin())
                     return view('auctions.include.datatable._actions',[
-                        'edit_url' => route("dashboard.users.edit",['user'=> $model->id,'user_type' => 'client']),
+//                        'edit_url' => route("dashboard.users.edit",['user'=> $model->id,'user_type' => 'client']),
                         'model' => $model
                     ]);
                 return Livewire::mount(BlockClient::class,['client' => $model])->html();

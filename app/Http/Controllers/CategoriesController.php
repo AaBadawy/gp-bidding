@@ -61,6 +61,8 @@ class CategoriesController extends Controller
 
     public function create()
     {
+        if(auth()->user()->isVendor())
+            abort(403);
         return view('categories.create');
     }
     /**
@@ -132,6 +134,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
+        if(auth()->user()->isVendor())
+            abort(403);
         $category = $this->repository->find($id);
 
         return view('categories.edit', compact('category'));

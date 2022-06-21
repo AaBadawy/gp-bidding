@@ -18,6 +18,9 @@ class Menu
     public static function renderVerMenu($item, $parent = null, $rec = 0, $singleItem = false)
     {
         self::checkRecursion($rec);
+
+        if(auth()->user()->isVendor() && isset($item['user_types']) && !  in_array(auth()->user()->type,$item['user_types']))
+            return;
         if (!$item) { return 'menu misconfiguration'; }
 
         if (isset($item['separator'])) {

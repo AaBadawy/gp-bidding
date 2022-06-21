@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -35,5 +36,12 @@ class Review extends Model
     public function auction()
     {
         return $this->belongsTo(Auction::class,'auction_id');
+    }
+
+    public function scopeForUser(Builder $builder,User $user)
+    {
+        if($user->isAdmin())
+            return $builder;
+        return $builder->whereIn("auction_id",Auction::query()->forUser($user)->select("id"));
     }
 }

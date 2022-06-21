@@ -2,19 +2,23 @@
 
 namespace App\Repositories\Eloquent;
 
-use Prettus\Repository\Eloquent\BaseRepository;
+use App\Infrastructure\Repository\EloquentRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\ReviewRepository;
 use App\Entities\Review;
-use App\Validators\ReviewValidator;
 
 /**
  * Class ReviewRepositoryEloquent.
  *
  * @package namespace App\Repositories\Eloquent;
  */
-class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepository
+class ReviewRepositoryEloquent extends EloquentRepository implements ReviewRepository
 {
+    protected $allowedFiltersExact = [
+        'auction_id',
+        'reviewer_id'
+    ];
+
     /**
      * Specify Model class name
      *
@@ -25,7 +29,7 @@ class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepositor
         return Review::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +38,5 @@ class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

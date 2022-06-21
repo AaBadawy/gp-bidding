@@ -69,4 +69,17 @@
             </div>
         @endif
     </div>
+    <div class="card card-custom gutter-b">
+        @if($auction->reviews()->doesntExist())
+            <div class="card-body pt-4">
+                No Reviews Yet
+            </div>
+
+        @else
+            <div class="card-body pt-4 bg-secondary-o-100">
+                See All Reviews
+                <p class="text-primary"><a href="{{route("dashboard.reviews.index",['filter' => ['auction_id' => $auction->id]])}}">see all</a></p>
+            </div>
+        @endif
+    </div>
 </div>

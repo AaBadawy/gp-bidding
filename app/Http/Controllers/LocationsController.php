@@ -72,7 +72,7 @@ class LocationsController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->cannot('create-location'))
+        if(auth()->user()->isVendor())
             abort(403);
 
         return view('locations.create');
@@ -147,7 +147,7 @@ class LocationsController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->cannot('edit-location'))
+        if(auth()->user()->isVendor())
             abort(403);
         $location = $this->repository->find($id);
 

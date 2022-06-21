@@ -25,6 +25,7 @@ return [
                 ],
                 [
                     'title' => 'Vendors',
+                    'user_types' => ['admin'],
                     'page' => '/dashboard/users/vendor',
                     'bullet' => 'dot',
                 ],
@@ -58,6 +59,19 @@ return [
             ]
         ],
         [
+            'title' => 'Reviews',
+            'desc' => '',
+            'icon' => 'media/svg/icons/Tools/Hummer2.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'All Reviews',
+                    'page' => 'dashboard/reviews/',
+                ],
+            ]
+        ],
+        [
             'title' => 'products',
             'desc' => '',
             'icon' => 'media/svg/icons/Tools/Angle Grinder.svg',
@@ -84,6 +98,7 @@ return [
             'icon' => 'media/svg/icons/Navigation/Double-check.svg',
             'bullet' => 'dot',
             'root' => true,
+            'user_types' => ['admin'],
             'submenu' => [
                 [
                     'title' => 'All Requests',
@@ -96,6 +111,7 @@ return [
             'desc' => '',
             'icon' => 'media/svg/icons/Navigation/Route.svg',
             'root'  => true,
+            'user_types' => ['admin'],
             'submenu' => [
                 [
                     'title' => 'All Vendors',
@@ -118,6 +134,7 @@ return [
                     'page'  => 'dashboard/categories'
                 ],
                 [
+                    'user_types' => ['admin'],
                     'title' => 'create Category',
                     'page'  => 'dashboard/categories/create'
                 ]
@@ -134,6 +151,7 @@ return [
                     'page'  => 'dashboard/locations'
                 ],
                 [
+                    'user_types' => ['admin'],
                     'title' => 'create Locations',
                     'page'  => 'dashboard/locations/create'
                 ]

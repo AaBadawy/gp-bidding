@@ -155,6 +155,14 @@ class Auction extends Model implements Transformable
         return new Attribute(fn() => $this->current_price ?: $this->start_price);
     }
 
+    public function scopeActualStatusIs(Builder $builder,string $status = '')
+    {
+        return match($status) {
+            "running"                   => $builder->whereDate("start_at","<=",now())->whereDate("end_at",">=",now()),
+            "not started","upcoming"    => $builder->whereDate("start_at",">",now()),
+            default                     => $builder->whereDate("end_at","<=",now())
+        };
+    }
     /**
      * @return bool
      */
@@ -216,5 +224,10 @@ class Auction extends Model implements Transformable
     public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class,'auction_id');
     }
 }

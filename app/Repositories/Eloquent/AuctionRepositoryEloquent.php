@@ -25,6 +25,9 @@ class AuctionRepositoryEloquent extends EloquentRepository implements AuctionRep
         'category_id'
     ];
 
+    protected $allowedFilterScopes = [
+        'actualStatusIs'
+    ];
     /**
      * Specify Model class name
      *

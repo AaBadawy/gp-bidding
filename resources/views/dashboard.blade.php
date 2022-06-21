@@ -33,7 +33,7 @@
                 <div class="card card-custom bg-light-success card-stretch gutter-b">
                     <!--begin::Body-->
                     <div class="card-body">
-												<span class="svg-icon svg-icon-2x svg-icon-info">
+												<span class="svg-icon svg-icon-2x svg-icon-success">
 													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
 													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

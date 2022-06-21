@@ -28,7 +28,7 @@ class AuctionDataTable extends DataTable
             ->addColumn('previewed_price',fn($model) => "<span>{$model->previewed_price}</span>")
             ->editColumn('end_at',fn($model) => "<span>{$model->end_at->format('Y-m-d H:m')}</span>")
             ->editColumn('created_at',fn($model) => "<span>{$model->created_at->format('Y-m-d H:m')}</span>")
-            ->editColumn('status',fn($model) => (new ColumnType(['pending' => 'secondary','ready' => 'warning', 'started' =>'info', 'finished' => 'primary'],$model->status))->render())
+            ->editColumn('status',fn($model) => (new ColumnType(['running' => 'warning', 'not started' =>'info', 'upcoming' => 'primary','ended' => 'secondary'],$model->status()))->render())
             ->addColumn('action', function($model) {
                 $data = [
                     'edit_url' => route('dashboard.auctions.edit',['auction' => $model->id]),
