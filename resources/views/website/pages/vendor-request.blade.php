@@ -44,7 +44,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="name"><i class="fas fa-envelope-open-text"></i></label>
-                            <input type="text" placeholder="Enter Your Email ID" name="email" id="email" class="@error("note") border-danger @enderror" value="{{old("email")}}">
+                            <input type="text" placeholder="Enter Your Email" name="email" id="email" class="@error("note") border-danger @enderror" value="{{old("email")}}">
                         </div>
                         @error("email")
                             <p class="text-danger font-weight-bold pl-3">{{$message}}</p>
